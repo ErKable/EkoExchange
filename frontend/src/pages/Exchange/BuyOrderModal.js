@@ -1,60 +1,78 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react'
+import { useState} from 'react'
+import { ethers } from 'ethers'
+import { Input, Button  } from "@nextui-org/react";
+import { useSigner } from 'wagmi';
+import { prepareWriteContract, writeContract } from '@wagmi/core'
+import { erc20ABI } from '@wagmi/core'
+import "./style.css"
 
-const Modal = ({show, data, onSubmit, onCancel, editUser}) => {
+ function BuyOrderModal({exchangeAddress, show , onCancel}){
+    
+    const [ekoAddress, setEkoAddress] = useState()
+    const [ekoAmount, setEkoAmount] = useState()
+    const [stAmount, setSTAmount] = useState()
+    const BuyFacetAbi = require('../../abi/BuyFacetAbi.json')
+    const { data: signer } = useSigner();
+    console.log(signer)
 
-  useEffect(() => {
-    console.log(editUser);
-    if (editUser) setFormData(editUser);
-  }, [editUser]);
-
-  const initialFormState = () => {
-    return editUser ? {id: null, name: 'silly billy', age: '123'} : {id: null, name: '', age: ''};
-  } 
-
-  const [formData, setFormData] = useState(initialFormState);
-
-  const onInputChange = event => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: (name === 'age' ? parseInt(value) : value )});
-  }
-
-  const submitData = event => {
-    event.preventDefault();
-    onSubmit(formData);
-    onCancel();
-  }
-
-  return (
-    show ? (
+    async function createBuyScoreTokenOrder(){
+        
+        const ekoStable = new ethers.Contract(ekoAddress, erc20ABI, signer)
+        let approve = await ekoStable.approve("0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  , ekoAmount)
+        await approve.wait()
+        const buyFacet = new ethers.Contract("0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  , BuyFacetAbi, signer)
+        let tx = await buyFacet.createBuyScoreTokensOrder(ekoAddress, ekoAmount, stAmount)
+        await tx.wait()
+    }
+    const submitData = event => {
+       event.preventDefault();
+      // onSubmit(formData);
+          onCancel();
+       }
       
-    <div className="modal-overlay">
+    return(
 
-      <div className='modal'>
+      show ? (
+      
+         <div className="modal-overlay">
 
-        <form onSubmit={submitData}>
-          <h3>{editUser ? 'edit details' : 'new details'}</h3>
-          <div className="modal-section">
-            <label>Token</label>
-            <input
-             type="number" 
-              name="name"
-              value={formData.name} 
-              onChange={onInputChange} autoFocus autoComplete="off"
-              className="block mx-auto "
-              />
-          </div>
-          <div className="modal-section">
-            <label>Payment</label>
-            <input type="number" name="age" value={formData.age} 
-              onChange={onInputChange} autoComplete="off" />
-          </div>
-          <button type="button" onClick={onCancel}>cancel</button>
-          <button type="submit">submit</button>
+        <div className='modal'>
+
+            <form style={{ border:'white 2px solid', display:'block', paddingTop:'20px'}} onSubmit={submitData}>
+
+            <div className="modal-section">
+            <label>Address</label>
+            <div>
+            <Input placeholder="Insert ekostable address" value={ekoAddress} onChange={(e) => setEkoAddress(e.target.value)} className="input-edit"/>
+            </div>
+            </div>
+
+            <div className="modal-section relative block">
+            <label>Amount</label>
+            <div>
+            <Input placeholder="Insert ekostable amount" value={ekoAmount} onChange={(e) => setEkoAmount(e.target.value)} className="input-edit" />
+            </div>
+            </div>
+
+
+            <div className="modal-section block">
+            <label>Requesting Amount</label>
+            <div>
+            <Input placeholder="Insert requesting amount" value={stAmount} onChange={(e) => setSTAmount(e.target.value)} className="input-edit" />
+            </div>
+            </div>
+
+            <div className='flex mx-auto justify-center mt-10 '>
+            <button onClick={() => createBuyScoreTokenOrder()} className="create-btn">Create buy order</button>
+            <button onClick={onCancel} className="bg-red-500 cancel-btn"> Cancel </button>
+            </div>
+
         </form>
-      </div>
-    </div> 
-    ) : null
+        </div>
+        </div>
+        ) : null
   );
-}
+ }
 
-export default Modal;
+export default BuyOrderModal

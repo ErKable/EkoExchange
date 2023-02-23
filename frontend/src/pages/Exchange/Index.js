@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import BuyOrder from "./BuyOrderModal";
 import SellOrder from "./SellOrderModal";
-import data from './data.json';
-import DataItem from './data-item';
+import DataItem from './BuyOrderView';
+// import CreateBuyScoreTokenOrder from "./BuyFacet"
 
 
 
 function Index() {
+
+  const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -17,32 +19,32 @@ function Index() {
   };
 
   const [showModal, setShowModal] = useState(false);
-  const [userData, setUserData] = useState(data);
-  const [currentUser, setCurrentUser] = useState(null);
+  // const [userData, setUserData] = useState(data);
+  // const [currentUser, setCurrentUser] = useState(null);
 
 
   const toggleModal = () => {
     setShowModal(!showModal);
   }
 
-  const addUser = user => {
-    if (currentUser) {
-      setUserData(userData.map(data => (data.id === user.id ? user : data)));
-      setCurrentUser(null);
-      return;
-    }
-    user.id = userData.length + 1;
-    setUserData([...userData, user]);
-  }
+  // const addUser = user => {
+  //   if (currentUser) {
+  //     setUserData(userData.map(data => (data.id === user.id ? user : data)));
+  //     setCurrentUser(null);
+  //     return;
+  //   }
+  //   user.id = userData.length + 1;
+  //   setUserData([...userData, user]);
+  // }
 
-  const editUserHandler = user => {
-    setCurrentUser(user);
-    toggleModal();
-  }
+  // const editUserHandler = user => {
+  //   setCurrentUser(user);
+  //   toggleModal();
+  // }
 
-  const deleteUser = user => {
-    setUserData(userData.filter(item => item.name !== user.name));
-  }
+  // const deleteUser = user => {
+  //   setUserData(userData.filter(item => item.name !== user.name));
+  // }
 
 
 
@@ -129,8 +131,9 @@ function Index() {
                 </div>
                 </button>
 
-              <BuyOrder onCancel={toggleModal} onSubmit={addUser} show={showModal} data={userData} editUser={currentUser} />
-              <DataItem data={userData} onEdit={editUserHandler} onDelete={deleteUser} />
+              <BuyOrder onCancel={toggleModal} show={showModal} />
+
+              <DataItem />
 
             
               <div className="block mx-auto mt-5">
@@ -180,8 +183,9 @@ function Index() {
                 </div>
                 </button>
 
-              <SellOrder onCancel={toggleModal} onSubmit={addUser} show={showModal} data={userData} editUser={currentUser} />
-              <DataItem data={userData} onEdit={editUserHandler} onDelete={deleteUser} />
+                <SellOrder onCancel={toggleModal} show={showModal} />
+                
+               {/* <DataItem data={userData} onEdit={editUserHandler} onDelete={deleteUser} />  */}
 
             
               <div className="block mx-auto mt-5">

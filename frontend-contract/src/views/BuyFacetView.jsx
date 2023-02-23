@@ -3,6 +3,7 @@ import { CreateBuyScoreTokenOrder, SellScoreTokenToBuyOrder } from "../component
 
 
 export default function BuyFacetView(){
+    
 const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  
    
    return(

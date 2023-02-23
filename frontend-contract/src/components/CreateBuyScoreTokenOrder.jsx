@@ -17,7 +17,7 @@ export default function CreateBuyScoreTokenOrder({exchangeAddress}){
     async function createBuyScoreTokenOrder(){
         
         const ekoStable = new ethers.Contract(ekoAddress, erc20ABI, signer)
-        let approve = await ekoStable.approve(exchangeAddress, ekoAmount)
+        let approve =  ekoStable.approve(exchangeAddress, ekoAmount)
         await approve.wait()
         const buyFacet = new ethers.Contract(exchangeAddress, BuyFacetAbi, signer)
         let tx = await buyFacet.createBuyScoreTokensOrder(ekoAddress, ekoAmount, stAmount)
