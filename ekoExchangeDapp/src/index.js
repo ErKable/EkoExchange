@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { bsc, bscTestnet} from "wagmi/chains";
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
@@ -36,7 +35,7 @@ const connectors = connectorsForWallets([
     wallets: [
       metaMaskWallet({ chains, shimDisconnect: true }),
       trustWallet({ chains, shimDisconnect: true }),
-      coinbaseWallet({ appName: 'King', chains })
+      coinbaseWallet({ appName: 'EkoExchange', chains })
     ]
   },
   {
@@ -68,7 +67,7 @@ root.render(
         <RainbowKitProvider
       chains={chains}
       appInfo={{
-        appName: 'King Pass'
+        appName: 'EkoExchange'
       }}
     >
   <React.StrictMode>
@@ -78,7 +77,3 @@ root.render(
   </WagmiConfig>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
