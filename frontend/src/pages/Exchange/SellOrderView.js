@@ -1,12 +1,12 @@
 import { Text } from "@nextui-org/react"
-import CreateBuyScoreTokenOrder from "./BuyOrderModal"
-import GetLatestBuyOrders from "./GetLatestBuyOrders"
-import SellScoreTokenToBuyOrder from "./SellScoreTokenToBuyOrder"
+import CreateSellScoreTokenOrder from "./SellOrderModal"
+import GetLatestBuyOrders from "./GetLatestSellOrder"
 
-
-function BuyOrderView(){
+export default function SellFacetView(){
     
-const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  
+const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"
+   
+   
    
    return(
             <>
@@ -18,13 +18,10 @@ const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"
                     }}
                     weight="bold"
                     >
-                        BUY ORDERS
+                        SELL ORDER VIEW
                 </Text>
-
-                <CreateBuyScoreTokenOrder exchangeAddress={exchangeAddress} />
+                <CreateSellScoreTokenOrder exchangeAddress={exchangeAddress} />
                 <GetLatestBuyOrders exchangeAddress={exchangeAddress} />
             </>
         )
 }
-
-export default BuyOrderView

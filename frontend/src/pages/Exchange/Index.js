@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import BuyOrder from "./BuyOrderModal";
 import SellOrder from "./SellOrderModal";
-import DataItem from './BuyOrderView';
-// import CreateBuyScoreTokenOrder from "./BuyFacet"
+import BuyOrderView from './BuyOrderView';
+import SellOrderView from "./SellOrderView"
 
 
 
@@ -133,7 +133,7 @@ function Index() {
 
               <BuyOrder onCancel={toggleModal} show={showModal} />
 
-              <DataItem />
+              <BuyOrderView />
 
             
               <div className="block mx-auto mt-5">
@@ -185,7 +185,7 @@ function Index() {
 
                 <SellOrder onCancel={toggleModal} show={showModal} />
                 
-               {/* <DataItem data={userData} onEdit={editUserHandler} onDelete={deleteUser} />  */}
+                <SellOrderView />
 
             
               <div className="block mx-auto mt-5">
