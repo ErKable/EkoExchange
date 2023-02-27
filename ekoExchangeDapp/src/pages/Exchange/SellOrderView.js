@@ -7,8 +7,8 @@ import SellScoreTokenToBuyOrder from "./SellScoreTokenToBuyOrder"
 import { readContract } from '@wagmi/core'
 
 function SellOrderView({ordersInfo, trigger}){
-    
-const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3" 
+    console.log(`ORDER INFO: ${ordersInfo}`)
+const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280" 
 
    
    return(

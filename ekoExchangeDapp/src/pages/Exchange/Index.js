@@ -11,7 +11,7 @@ import { readContract } from '@wagmi/core'
 
 function Index() {
 
-const exchangeAddress = "0xE1D5D978FB6162d94DB7aD0572bfFF2EeEc02DC3"  
+const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280"  
 
 const tempIds = [10,11,12,13,14,15,16]
 const [trigger, setTrigger] = useState()
@@ -35,7 +35,7 @@ async function getLatestBuys(){
         address: exchangeAddress,
         abi: viewFacetAbi,
         functionName: 'getLatestBuyOrders',
-        args: ['10']
+        args: ['15']
     })
     console.log(data)
     let ids = []
@@ -124,7 +124,7 @@ function handleTrigger(){
             address: exchangeAddress,
             abi: viewFacetAbi,
             functionName: 'getLatestSellOrders',
-            args: ['10']
+            args: ['15']
           })
         console.log(data)
         let ids = []
