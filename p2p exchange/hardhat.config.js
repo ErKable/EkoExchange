@@ -77,10 +77,11 @@ module.exports = {
     timeout: 10000000
   },
   gasReporter: {
-    token: 'BNB',
-    currency: 'USD',
-    gasPrice: 5,
+    token: 'ETH',
+    currency: 'EUR',
+    gasPrice: 18,
     coinmarketcap: process.env.CMC_API
+    
   },
   etherscan:{
     apiKey: process.env.ETHERSCAN_API
@@ -89,7 +90,7 @@ module.exports = {
     hardhat: {
       allowUnlimitedContractSize: true,
       forking: {
-        url: "https://bsc-dataseed1.defibit.io/"//'https://bsc-dataseed.binance.org/',//"https://bsc-dataseed1.defibit.io/",//"http://localhost:8547", 'https://cronosrpc-1.xstaking.sg'
+        url: "https://data-seed-prebsc-1-s3.binance.org:8545"//'https://bsc-dataseed.binance.org/',//"https://bsc-dataseed1.defibit.io/",//"http://localhost:8547", 'https://cronosrpc-1.xstaking.sg'
       },
       accounts: {
         count: 250,
@@ -105,6 +106,16 @@ module.exports = {
         process.env.TESTNET_PKEY5,
       ],
     },
+    goerli:{
+      url: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+      accounts: [
+        process.env.TESTNET_PKEY1,
+        process.env.TESTNET_PKEY2,
+        process.env.TESTNET_PKEY3,
+        process.env.TESTNET_PKEY4,
+        process.env.TESTNET_PKEY5,
+      ],
+    }
   }
 
 };
