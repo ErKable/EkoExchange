@@ -12,10 +12,10 @@ const Nav = () => {
   const [activeTheme, setTheme] = useThemeSwitcher();
 
   return (
-    <div class="container mx-auto overflow-hidden sticky top-0 bg-white dark:bg-black z-10">
-      <div class="flex items-center justify-between px-2 py-2">
+    <div class=" w-full fixed top-0 bg-white dark:bg-black z-10 px-10">
+      <div class="flex items-center justify-between px-2 py-2  w-full">
         <div class="w-auto">
-          <div class="flex flex-wrap items-center">
+          <div class="flex flex-wrap items-center w-full">
             <div class="">
               <Link to="/">
                 <img

@@ -1,125 +1,218 @@
-.thebg{
-    background-image: url(../../assets/images/bg.jpeg);
-    width: 100%;
-    height: 200px;
-    background-position: cover;
-    text-align: center;
-    color: white;
+.thebg {
+  background-image: url(../../assets/images/Background.png);
+  width: 100%;
+  height: 100vh;
+  background-position: cover;
+  text-align: center;
+  color: white;
+  position: relative;
 }
 
-.exchange h1{
-    font-size: 30px;
-    padding-top: 20px;
+.bitcoin{
+  position: absolute;
+width: 95px;
+height: 95px;
+left: 165px;
+top: 240px;
+background: url(../../assets/images/Bitcoin-1.png);
 }
 
-.exchange p{
-    font-size: 15px;
-    padding-top: 20px;
+.litecoin{
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  left: 1200px;
+  top: 200px;
+  background: url(../../assets/images/LiteCoin-2.png);
 }
 
+.ethereum{
+  position: absolute;
+width: 160px;
+height: 160px;
+left: 70px;
+top: 720px;
+background: url(../../assets/images/Etherium-2.png);
+}
 
+.monero{
+  position: absolute;
+width: 63px;
+height: 63px;
+left: 1275px;
+top: 660px;
+
+background: url(../../assets/images/Monero-1.png);
+}
+
+.thebg h1{
+  position: absolute;
+  width: 730px;
+  height: 190px; 
+  left: 355px;
+   top: 159px; 
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 95px;
+  text-align: center;
+}
+
+.thebg p{
+   position: absolute;
+  width: 540px;
+  height: 21px; 
+  left: 450px; 
+  top: 396px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+}
+
+.theBgButton {
+  position: absolute;
+  width: 377px;
+  height: 55px; 
+   left: 508px; 
+  top: 452px;
+  display: flex;
+  gap: 30px;
+}
+
+.theBgButton1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 24px;
+  gap: 10px;
+  /* position: absolute; */
+  width: 176px;
+  height: 55px;
+  left: 508px;
+  /* top: 432px; */
+  background: #073fb8;
+  border-radius: 40px;
+}
+
+.theBgButton2 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 24px;
+  gap: 10px;
+  /* position: absolute; */
+  width: 171px;
+  height: 55px;
+  /* left: 714px;
+  top: 432px; */
+  background: rgba(22, 14, 51, 0.5);
+  border: 2px solid #073fb8;
+  border-radius: 40px;
+}
 .active-tabs {
-    background: var(--primary-800);
-    color: white;
-    border-bottom: 1px solid var(--primary-100);
-    width: 100px;
-    border-radius: 50px;
-  }
-  
-  
-  .mSRG-Btn{
-    height: 60px;
-    width: 15%;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    margin: 10px auto;
-    justify-content: center;
-    background-color: var(  --primary-100);
-    
-  }
-  
-    .mSRG-btn{
-        color: white;
-        font-weight: 700;
-        padding: 13px;
-        font-size: 20px;
-  }
-  
-  .mSRG-container-inner{
-    display: none;
-    gap: 1rem; 
-    padding: 30px 0px 50px 0px ;
-  
-  }
-  
-  .active-content{
-    display: grid;
-  }
-  
-  .mSRG-content{
-    text-align: left;
-    font-size: 20px;
-    font-size: 16px;
-    margin-top: 10px;
-    width: 100%;
-    display: block;
-    color: #666d70;
-    line-height: 2.8rem;
-    font-weight: 400;
-  }
-  
-  
-  
-  .heroSearchForm{
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    box-shadow: 0 2px 15px 1px rgb(0 0 0 / 15%);
-    padding: 40px 40px 40px 40px;
-    border-radius: 5px;
- 
+  background: var(--primary-800);
+  color: white;
+  border-bottom: 1px solid var(--primary-100);
+  width: 100px;
+  border-radius: 50px;
 }
 
-form select{
+.msRGContainer{
+  margin-top: 50px;
+}
+
+.mSRG-Btn {
+  height: 60px;
+  width: 15%;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  justify-content: center;
+  background-color: var(--primary-100);
+}
+
+.mSRG-btn {
+  color: white;
+  font-weight: 700;
+  padding: 13px;
+  font-size: 20px;
+}
+
+.mSRG-container-inner {
+  display: none;
+  gap: 1rem;
+  padding: 30px 0px 50px 0px;
+}
+
+.active-content {
+  display: grid;
+}
+
+.mSRG-content {
+  text-align: left;
+  font-size: 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 100%;
+  display: block;
+  color: #666d70;
+  line-height: 2.8rem;
+  font-weight: 400;
+}
+
+.heroSearchForm {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0 2px 15px 1px rgb(0 0 0 / 15%);
+  padding: 40px 40px 40px 40px;
+  border-radius: 5px;
+}
+
+form select {
   border: 1px solid var(--primary-800);
   padding: 14px 35px;
   border-radius: 10px;
   margin-top: 5px;
   background: none;
-
 }
 
-form input{
-background: none;
-padding: 9px;
-} 
+form input {
+  background: none;
+  padding: 9px;
+}
 
-form h3{
+form h3 {
   text-align: center;
   padding-top: 20px;
-
-}  .amount{
+}
+.amount {
   border: 1px solid var(--primary-800);
   padding: 5px;
   border-radius: 10px;
   margin-top: 5px;
+}
+.buyForm {
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0 2px 15px 1px rgb(0 0 0 / 15%);
+  padding: 40px 40px 40px 40px;
+  border-radius: 5px;
+  background-color: white;
+}
 
-} 
-.buyForm{
-    margin-top: 30px;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    box-shadow: 0 2px 15px 1px rgb(0 0 0 / 15%);
-    padding: 40px 40px 40px 40px;
-    border-radius: 5px;
-    background-color: white;
- 
-} 
-
-
-h1, p {
+h1,
+p {
   font-family: Lato;
 }
 
@@ -137,42 +230,41 @@ h1, p {
 }
 
 .modal-overlay {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .modal {
-    text-align: center;
-    position: fixed;
-    z-index: 999;
-    display: block;
-    border-radius: 5px;
-    width: 50%;
-    max-width: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 50px;
-    padding: 20px;
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  display: block;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 50px;
+  padding: 20px;
 }
 
-.input-edit input{
+.input-edit input {
   padding: 50px;
   border: var(--primary-800);
 }
 
-.modal-section{
+.modal-section {
   padding-top: 20px;
 }
 
-
-.cancel-btn{
+.cancel-btn {
   background-color: red;
   padding: 15px;
   border-radius: 15px;
@@ -181,12 +273,11 @@ h1, p {
   font-weight: 900;
 }
 
-.create-btn{
+.create-btn {
   background-color: var(--primary-800);
   padding: 15px;
   border-radius: 15px;
   color: white;
   margin-right: 10px;
   font-weight: 900;
-
 }

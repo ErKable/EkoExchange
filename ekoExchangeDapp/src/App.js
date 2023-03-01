@@ -27,7 +27,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/ekoswap" element={<Ekoswap />} />
           <Route path="/ekolend" element={<Ekolend />} />
-
           <Route path="/exchange" element={<Exchange />} />
 
           {/* Forms */}

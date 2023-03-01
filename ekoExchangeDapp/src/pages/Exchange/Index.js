@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import BuyOrder from "./BuyOrderModal";
@@ -10,6 +10,13 @@ import { readContract } from '@wagmi/core'
 
 
 function Index() {
+
+
+//scroll
+const ref = useRef(null);
+const handleClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  };
 
 const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280"  
 
@@ -173,21 +180,35 @@ function handleTrigger(){
 
      
         <div className="thebg">
-    
 
-          <h1 className="font-bold">Buy and Sell EkoScores and EkoTokens.</h1>
-          <h3 className="pt-4 font-medium">
-            Buy and sell EkoScores and EkoTokens safely and easily on Ekolance
-            P2P.
-          </h3>
-          <p className="">
-            Find the best offer below and buy and sell EkoScores and EkoTokens
-            today.
-          </p>
+       
+
+          <h1>Next Generation Crypto Trading</h1>
+
+          <div className="bitcoin"></div>
+
+          <div className="litecoin"></div>
+
+          <p>Buy and Sell EkoScores and EkoTokens.</p>
+    
+         <div className="theBgButton">
+
+        
+          <button className="theBgButton1" onClick={handleClick}>Buy Tokens</button>
+
+          <button className="theBgButton2" onClick={handleClick}>Sell Tokens</button>
+
+         </div>
+
+         <div className="ethereum"></div>
+
+        <div className="monero"></div>
         </div>
 
-        <div className="msRGContainer">
+        <div className="msRGContainer" ref={ref}>
+
           <div className="mSRG-Btn">
+            
             <button
               id="Gallery1"
               className={
@@ -243,7 +264,7 @@ function handleTrigger(){
                 </div>
               </form>
 
-              <button className="p-3 mt-4 text-white text-lg rounded-xl bg-primary block mx-auto">
+              <button className="p-3 mt-4 text-white text-lg rounded-xl bg-primary block mx-auto" >
                 <div>
                 <button onClick={toggleModal}>Create Buy Order</button>
                 </div>
