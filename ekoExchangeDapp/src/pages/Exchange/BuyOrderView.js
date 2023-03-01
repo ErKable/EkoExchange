@@ -9,6 +9,7 @@ import { readContract } from '@wagmi/core'
 function BuyOrderView({ordersInfo, trigger}){
 console.log(`ORDER INFO: ${ordersInfo}`)
 const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280"  
+
 /* 
 const tempIds = [10,11,12,13,14,15,16]
 const [trigger, setTrigger] = useState()
