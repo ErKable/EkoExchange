@@ -211,7 +211,7 @@ function Index() {
             <button
               id="Gallery1 flex"
               className={
-                toggleState === 1 ? " mSRG-btn  active-tabs " : "mSRG-btn"
+                toggleState === 1 ? " mSRG-btn  active-tabss " : "mSRG-btn"
               }
               onClick={() => toggleTab(1)}
             >

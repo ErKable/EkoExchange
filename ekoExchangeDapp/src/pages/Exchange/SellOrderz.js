@@ -64,7 +64,24 @@ export default function SellOrderz({orderInfo, trigger}){
     
 
     return(
-        
+
+
+        <>
+
+
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table >
+            <thead></thead>
+            <tbody>
+              <td class="px-12 py-4 text-black">{orderInfo.orderId}</td>
+              <td class="px-12 py-4 text-black">{tokenName}</td>
+              <td class="px-12 py-4 text-black">{orderInfo.requestingAmount}</td>
+              <td class="px-20 py-4">{stableName}</td>
+              <td class="px-16 py-4"> {orderInfo.givingAmount}</td>
+              <td class="px-16 py-4">  <button onClick={() => buyFromSellOrder()} className="create-btn" >Buy from sell order</button> </td>
+            </tbody>
+          </table>
+{/*         
             <div style={{height: '400px', width: '200 px', border: 'solid 2px black'}}>
                 <p>ORDER ID: {orderInfo.orderId}</p>
                 <p>Requesting Token: {stableName}</p>
@@ -74,7 +91,10 @@ export default function SellOrderz({orderInfo, trigger}){
 
                 <Button onClick={() => buyFromSellOrder()}>Buy from sell order</Button> 
 
-            </div>
+            </div> */}
+
+        </div>
+        </>
         
     )
 }

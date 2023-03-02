@@ -6,6 +6,7 @@
   text-align: center;
   color: white;
   position: relative;
+  
 }
 
 .bitcoin{
@@ -146,13 +147,23 @@ position: absolute;
 }
 
 .active-tabs {
-  background: var(--primary-800);
+  background: #FF5733 ;
   color: white;
   border-bottom: 1px solid var(--primary-100);
   width: 100px;
   border-radius: 15px;
   padding: 30px;
 }
+
+.active-tabss{
+  background: #228B22 ;
+  color: white;
+  border-bottom: 1px solid var(--primary-100);
+  width: 100px;
+  border-radius: 15px;
+  padding: 30px;
+}
+
 
 .msRGContainer{
   margin-top: 70px;
@@ -170,7 +181,7 @@ position: absolute;
   align-items: center;
   margin: 10px auto;
   justify-content: center;
-  background-color: var(--primary-100);
+  background-color: #E1B530;
 }
 
 .mSRG-btn {
@@ -323,7 +334,7 @@ p {
 }
 
 .create-btn {
-  background-color: var(--primary-800);
+  background-color: #E1B530;
   padding: 10px;
   border-radius: 10px;
   color: white;
@@ -357,66 +368,206 @@ input::-webkit-inner-spin-button {
  
 }
 
-
-.lds-ellipsis {
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
   display: inline-block;
   position: absolute;
-  width: 500px;
-  height: 500px;
-  top: 50%;
-  left: 50%;
-}
-
-.lds-ellipsis div{
-  position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #DC5800;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis div:nth-child(1) {
   left: 8px;
-  animation: lds-ellipsis1 0.6s infinite;
+  width: 16px;
+  background: #FF5733;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
-.lds-ellipsis div:nth-child(2) {
+.lds-facebook div:nth-child(1) {
   left: 8px;
-  animation: lds-ellipsis2 0.6s infinite;
+  animation-delay: -0.24s;
 }
-.lds-ellipsis div:nth-child(3) {
+.lds-facebook div:nth-child(2) {
   left: 32px;
-  animation: lds-ellipsis2 0.6s infinite;
+  animation-delay: -0.12s;
 }
-.lds-ellipsis div:nth-child(4) {
+.lds-facebook div:nth-child(3) {
   left: 56px;
-  animation: lds-ellipsis3 0.6s infinite;
+  animation-delay: 0;
 }
-
-
-
-@keyframes lds-ellipsis1 {
+@keyframes lds-facebook {
   0% {
-    transform: scale(0);
+    top: 8px;
+    height: 64px;
   }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
+  50%, 100% {
+    top: 24px;
+    height: 32px;
   }
 }
 
+
+
+
+@media only screen and (min-width: 540px) and (max-width: 1024px) {
+
+
+  .bitcoin{
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    left: 50px;
+    top: 240px;
+    background: url(../../assets/images/Bitcoin-1.png);
+    }
+    
+    .litecoin{
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      left: 800px;
+      top: 200px;
+      background: url(../../assets/images/LiteCoin-2.png);
+    }
+    
+    .ethereum{
+      position: absolute;
+    width: 160px;
+    height: 160px;
+    left: 90px;
+    top: 720px;
+    background: url(../../assets/images/Etherium-2.png);
+    }
+    
+    .monero{
+      position: absolute;
+    width: 63px;
+    height: 63px;
+    left: 800px;
+    top: 660px;
+    
+    background: url(../../assets/images/Monero-1.png);
+    }
+    
+    .thebg h1{
+      position: absolute;
+      width: 730px;
+      height: 190px; 
+      left: 130px;
+       top: 159px; 
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 95px;
+      text-align: center;
+    }
+    
+    .thebg p{
+       position: absolute;
+      width: 540px;
+      height: 21px; 
+      left: 220px; 
+      top: 396px;
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      text-align: center;
+    }
+    
+    .thebg h6{
+      position: absolute;
+     width: 540px;
+     height: 21px; 
+     left: 220px; 
+     top: 450px;
+     font-family: "Rubik";
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 21px;
+     text-align: center;
+    }
+    
+    .thebg .accept{
+    position: absolute;
+     width: 540px;
+     height: 21px; 
+     left: 200px; 
+     top: 480px;
+     font-family: "Rubik";
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 21px;
+     text-align: center;
+    }
+    
+    .theBgButton {
+      position: absolute;
+      width: 377px;
+      height: 55px; 
+       left: 280px; 
+      top: 550px;
+      display: flex;
+      gap: 30px;
+    }
+    
+    .theBgButton1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 24px;
+      gap: 10px;
+      /* position: absolute; */
+      width: 176px;
+      height: 55px;
+      left: 98px;
+      /* top: 432px; */
+      background: #073fb8;
+      border-radius: 40px;
+    }
+    
+    .theBgButton2 {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 24px;
+      gap: 10px;
+      /* position: absolute; */
+      width: 171px;
+      height: 55px;
+      /* left: 714px;
+      top: 432px; */
+      background: rgba(22, 14, 51, 0.5);
+      border: 2px solid #073fb8;
+      border-radius: 40px;
+    }
+    .mSRG-Btn {
+      width: 20%;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      margin: 10px auto;
+      justify-content: center;
+      background-color: #e8e8e8;
+    }
+  
+.mSRG-btn {
+  color: white;
+  font-weight: 700;
+  padding: 13px;
+  font-size: 20px;
+}
+
+}
+
+
+
+@media only screen and (min-width: 100px) and (max-width: 425px) {
+
+}
