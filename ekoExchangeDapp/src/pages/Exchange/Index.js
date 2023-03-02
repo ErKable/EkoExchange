@@ -306,7 +306,7 @@ function Index() {
               />
 
               <DataItem ordersInfo={buyOrdersInfo} trigger={handleTrigger} />
-
+{/* 
               <div className="block mx-auto mt-5">
                 <h1 className="text-center">Can’t find your desired order?</h1>
 
@@ -315,7 +315,7 @@ function Index() {
                     <button onClick={toggleModal}>Create Buy Order</button>
                   </div>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -347,7 +347,7 @@ function Index() {
                 </div>
               </form>
 
-              <button className="p-5 mt-4 text-white text-lg rounded-md bg-primary block mx-auto">
+              <button className="p-3 mt-4 text-white text-lg rounded-xl bg-primary block mx-auto">
                 <div>
                   <button onClick={toggleModal}>Create Sell Order</button>
                 </div>
@@ -364,7 +364,7 @@ function Index() {
               />
               {/* <DataItem data={userData} onEdit={editUserHandler} onDelete={deleteUser} />  */}
 
-              <div className="block mx-auto mt-5">
+              {/* <div className="block mx-auto mt-5">
                 <h1 className="text-center">Can’t find your desired order?</h1>
 
                 <button className="p-5 mt-4 text-white text-lg rounded-md bg-primary block mx-auto">
@@ -372,7 +372,7 @@ function Index() {
                     <button onClick={toggleModal}>Create Sell Order</button>
                   </div>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

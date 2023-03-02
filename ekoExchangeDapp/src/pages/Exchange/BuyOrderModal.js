@@ -9,6 +9,7 @@ import { readContract } from "@wagmi/core";
 import "./style.css";
 
 function BuyOrderModal({ show, onCancel, trigger }) {
+
   const [selected, setSelected] = React.useState(new Set(["EkoStable"]));
 
   const [selectedSecond, setSelectedSecond] = React.useState(
@@ -21,7 +22,7 @@ function BuyOrderModal({ show, onCancel, trigger }) {
   );
 
   const secondSelectedValue = React.useMemo(
-    () => Array.from(selected).join(", ").replaceAll("_", " "),
+    () => Array.from(selectedSecond).join(", ").replaceAll("_", " "),
     [selectedSecond]
   );
 
@@ -116,7 +117,7 @@ function BuyOrderModal({ show, onCancel, trigger }) {
 
         <form onSubmit={submitData}>
           <div className="modal-section relative block">
-            <label>Choose EkoStable Address</label>
+            <label>Select EkoStable Address</label>
 
             <div className="flex justify-center w-full mt-3">
               <Dropdown>
@@ -136,6 +137,7 @@ function BuyOrderModal({ show, onCancel, trigger }) {
                           <Dropdown.Item
                             key={ekoStable.address}
                             value={ekoStable.address}
+                            required={true}
                           >
                             {ekoStable.name}
                           </Dropdown.Item>
@@ -148,7 +150,7 @@ function BuyOrderModal({ show, onCancel, trigger }) {
           </div>
 
           <div className="modal-section relative block">
-            <label>Amount</label>
+            <label>Giving Amount</label>
             <div className=" mt-3">
               <Input
                 placeholder="Insert ekostable amount"
@@ -176,10 +178,10 @@ function BuyOrderModal({ show, onCancel, trigger }) {
           </div>
 
           <div className="modal-section relative block">
-            <label>Choose ScoreToken Address</label>
+            <label>Select ScoreToken Address</label>
             <div className="flex justify-center w-full mt-3">
               <Dropdown>
-                <Dropdown.Button flat>{selectedSecond}</Dropdown.Button>
+                <Dropdown.Button flat>{secondSelectedValue}</Dropdown.Button>
                 <Dropdown.Menu
                   aria-label="Single selection actions"
                   selectionMode="single"
@@ -194,6 +196,7 @@ function BuyOrderModal({ show, onCancel, trigger }) {
                           <Dropdown.Item
                             key={scoreToken.address}
                             value={scoreToken.address}
+                            required={true}
                             
                           >
                             {scoreToken.name}
