@@ -109,7 +109,7 @@ function handleTrigger(){
         </tbody>
       </table>
 
-      <div className="justify-center flex" >
+      <div className="block mx-auto text-center" >
       {ordersInfo ? (
             ordersInfo.map((orderInfo) => {
               return <BuyOrder orderInfo={orderInfo} trigger={trigger} />;

@@ -46,7 +46,7 @@ function SellOrderView({ ordersInfo, trigger }) {
           </tbody>
         </table>
 
-        <div className="justify-center flex" >
+        <div className="" >
           {ordersInfo ? (
             ordersInfo.map((orderInfo) => {
               return <SellOrderz orderInfo={orderInfo} trigger={trigger} />;

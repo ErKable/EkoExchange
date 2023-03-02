@@ -74,7 +74,7 @@ export default function SellOrderz({orderInfo, trigger}){
             <thead></thead>
             <tbody>
               <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
-              <td class="px-12 py-4 text-grey-700k">{tokenName}</td>
+              <td class="px-12 py-4 text-grey-700">{tokenName}</td>
               <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
               <td class="px-20 py-4 text-grey-700">{stableName}</td>
               <td class="px-16 py-4 text-grey-700"> {orderInfo.givingAmount}</td>

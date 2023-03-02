@@ -9,10 +9,10 @@ function Loader() {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-      }, 8000);
+      }, 6000);
     }, []);
   return (
-    <div>
+    <div className='flex justify-center'>
         <div class="lds-facebook"><div></div><div></div><div></div></div>
     </div>
   )
