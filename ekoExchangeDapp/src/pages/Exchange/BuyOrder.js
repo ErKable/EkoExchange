@@ -69,16 +69,16 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
     <>
 
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg text-gre ">
-        <table className="block mx-auto" >
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table >
           <thead></thead>
           <tbody>
             <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
-            <td class="px-12 py-4">{tokenName}</td>
-            <td class="px-12 py-4">{orderInfo.requestingAmount}</td>
-            <td class="px-20 py-4">{stableName}</td>
-            <td class="px-16 py-4"> {orderInfo.givingAmount}</td>
-            <td class="px-16 py-4"> <button onClick={() => buyFromSellOrder()} className="create-btn">Buy from sell order</button>  </td>
+            <td class="px-12 py-4 text-grey-700">{tokenName}</td>
+            <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
+            <td class="px-20 py-4 text-grey-700">{stableName}</td>
+            <td class="px-16 py-4 text-grey-700"> {orderInfo.givingAmount}</td>
+            <td class="px-16 py-4 text-grey-700"> <button onClick={() => buyFromSellOrder()} className="create-btn">Buy from sell order</button>  </td>
           </tbody>
         </table>
 

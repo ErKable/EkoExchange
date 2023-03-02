@@ -9,6 +9,7 @@ import Loader from "../../components/Loader";
 import "./style.css";
 
 function BuyOrderView({ ordersInfo, trigger }) {
+
   console.log(`ORDER INFO: ${ordersInfo}`);
   const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280";
 
@@ -77,55 +78,53 @@ function handleTrigger(){
 } */
 
   return (
+
     <>
-      <div className="text-black">
-        <table className="text-black">
-          <thead className="text-black">
-            <tr className="text-black">
-              <th scope="col" className="px-6 py-3 text-black">
-                ORDER ID
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Requesting Token
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Requesting Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Token
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td> */}
-          </tbody>
-        </table>
+    <div>
+      <table className="text-black flex justify-center">
+        <thead className="text-black flex justify-center">
+          <tr className="text-black flex justify-center">
+            <th scope="col" className="px-6 py-3">
+              ORDER ID
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Requesting Token
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Requesting Amount
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Giving Token
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Giving Amount
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+     
+        </tbody>
+      </table>
 
-        {ordersInfo ? (
-          ordersInfo.map((orderInfo) => {
-            return <BuyOrder orderInfo={orderInfo} trigger={trigger} />;
-          })
-        ) : (
-          <Loader />
-        )}
+      <div className="justify-center flex" >
+      {ordersInfo ? (
+            ordersInfo.map((orderInfo) => {
+              return <BuyOrder orderInfo={orderInfo} trigger={trigger} />;
+            })
+          ) : (
+            <Loader />
+          )}
       </div>
 
-      <div>
-        <CreateBuyScoreTokenOrder exchangeAddress={exchangeAddress} />
-        {/* <SellScoreTokenToBuyOrder exchangeAddress={exchangeAddress} /> */}
-        {/* <GetLatestBuyOrders exchangeAddress={exchangeAddress} /> */}
-      </div>
-    </>
+      <CreateBuyScoreTokenOrder exchangeAddress={exchangeAddress} />
+      {/* <SellScoreTokenToBuyOrder exchangeAddress={exchangeAddress} /> */}
+      {/* <GetLatestBuyOrders exchangeAddress={exchangeAddress} /> */}
+    </div>
+  </>
+ 
   );
 }
 

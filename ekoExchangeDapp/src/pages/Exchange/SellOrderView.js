@@ -14,9 +14,9 @@ function SellOrderView({ ordersInfo, trigger }) {
   return (
     <>
       <div>
-        <table>
-          <thead>
-            <tr>
+        <table className="text-black flex justify-center">
+          <thead className="text-black flex justify-center">
+            <tr className="text-black flex justify-center">
               <th scope="col" className="px-6 py-3">
                 ORDER ID
               </th>
@@ -46,9 +46,7 @@ function SellOrderView({ ordersInfo, trigger }) {
           </tbody>
         </table>
 
-        <div
-          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-        >
+        <div className="justify-center flex" >
           {ordersInfo ? (
             ordersInfo.map((orderInfo) => {
               return <SellOrderz orderInfo={orderInfo} trigger={trigger} />;

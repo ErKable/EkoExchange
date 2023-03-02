@@ -73,12 +73,12 @@ export default function SellOrderz({orderInfo, trigger}){
           <table >
             <thead></thead>
             <tbody>
-              <td class="px-12 py-4 text-black">{orderInfo.orderId}</td>
-              <td class="px-12 py-4 text-black">{tokenName}</td>
-              <td class="px-12 py-4 text-black">{orderInfo.requestingAmount}</td>
-              <td class="px-20 py-4">{stableName}</td>
-              <td class="px-16 py-4"> {orderInfo.givingAmount}</td>
-              <td class="px-16 py-4">  <button onClick={() => buyFromSellOrder()} className="create-btn" >Buy from sell order</button> </td>
+              <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
+              <td class="px-12 py-4 text-grey-700k">{tokenName}</td>
+              <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
+              <td class="px-20 py-4 text-grey-700">{stableName}</td>
+              <td class="px-16 py-4 text-grey-700"> {orderInfo.givingAmount}</td>
+              <td class="px-16 py-4 text-grey-700">  <button onClick={() => buyFromSellOrder()} className="create-btn" >Buy from sell order</button> </td>
             </tbody>
           </table>
 {/*         
