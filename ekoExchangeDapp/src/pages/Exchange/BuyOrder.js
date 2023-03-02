@@ -69,11 +69,11 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
     <>
 
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg text-gre ">
         <table className="block mx-auto" >
           <thead></thead>
           <tbody>
-            <td class="px-12 py-4">{orderInfo.orderId}</td>
+            <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
             <td class="px-12 py-4">{tokenName}</td>
             <td class="px-12 py-4">{orderInfo.requestingAmount}</td>
             <td class="px-20 py-4">{stableName}</td>

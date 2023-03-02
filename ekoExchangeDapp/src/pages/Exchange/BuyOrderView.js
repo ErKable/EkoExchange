@@ -78,11 +78,11 @@ function handleTrigger(){
 
   return (
     <>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col" className="px-6 py-3">
+      <div className="text-black">
+        <table className="text-black">
+          <thead className="text-black">
+            <tr className="text-black">
+              <th scope="col" className="px-6 py-3 text-black">
                 ORDER ID
               </th>
               <th scope="col" className="px-6 py-3">

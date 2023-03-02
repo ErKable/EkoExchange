@@ -379,7 +379,7 @@ input::-webkit-inner-spin-button {
   position: absolute;
   left: 8px;
   width: 16px;
-  background: #FF5733;
+  background: #E1B530;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 .lds-facebook div:nth-child(1) {

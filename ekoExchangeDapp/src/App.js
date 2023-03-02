@@ -17,7 +17,7 @@ function App() {
 
   
   return (
-    <div className="bg-white dark:bg-black transition duration-300 text-primary dark:text-secondary-light h-screen">
+    <div className="bg-white dark:bg-black transition duration-300  dark:text-secondary-light h-screen">
       <Router>
         <Navbar />
 
