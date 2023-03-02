@@ -70,7 +70,7 @@ export default function SellOrderz({orderInfo, trigger}){
 
 
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table >
+          <table  className="flex justify-center">
             <thead></thead>
             <tbody>
               <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
