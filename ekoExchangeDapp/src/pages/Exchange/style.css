@@ -1,116 +1,90 @@
 .thebg {
-  background-image: url(../../assets/images/Background.png);
-  width: 100%;
+  /* background-image: url(../../assets/images/thebg.png); */
+  /* width: 100vw;
   height: 100vh;
   background-position: cover;
   text-align: center;
   color: white;
   position: relative;
-  
+  background-repeat: no-repeat;
+  max-width: 100vw;
+  min-height: 100vh; */
 }
 
-.bitcoin{
-position: absolute;
-width: 95px;
-height: 95px;
-left: 165px;
-top: 240px;
-background: url(../../assets/images/Bitcoin-1.png);
+
+.thebg img{
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
-.litecoin{
+.bg-content{
   position: absolute;
-  width: 140px;
-  height: 140px;
-  left: 1200px;
-  top: 200px;
-  background: url(../../assets/images/LiteCoin-2.png);
+  display: block;
+  margin: 50px auto;
+  top: 50px;
+  text-align: center;
+  width: 100%;
+  color: white;
 }
 
-.ethereum{
-  position: absolute;
-width: 160px;
-height: 160px;
-left: 70px;
-top: 720px;
-background: url(../../assets/images/Etherium-2.png);
-}
+.bg-content h1{
 
-.monero{
-  position: absolute;
-width: 63px;
-height: 63px;
-left: 1275px;
-top: 660px;
-
-background: url(../../assets/images/Monero-1.png);
-}
-
-.thebg h1{
-  position: absolute;
-  width: 730px;
-  height: 190px; 
-  left: 355px;
-   top: 159px; 
   font-family: "Rubik";
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
   line-height: 95px;
   text-align: center;
+  padding-top: 200px;
+  width: 40%;
+  color: white;
+  display: block;
+  margin: 0px auto;
+
 }
 
-.thebg p{
-   position: absolute;
-  width: 540px;
-  height: 21px; 
-  left: 450px; 
-  top: 396px;
+
+.bg-content p{
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   text-align: center;
+  padding-top: 20px;
+  color: white;
+
 }
 
-.thebg h6{
-  position: absolute;
- width: 540px;
- height: 21px; 
- left: 450px; 
- top: 450px;
- font-family: "Rubik";
- font-style: normal;
- font-weight: 400;
- font-size: 18px;
- line-height: 21px;
- text-align: center;
+.bg-content h6{
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  padding-top: 20px;
+  color: white;
 }
 
-.thebg .accept{
-position: absolute;
- width: 540px;
- height: 21px; 
- left: 450px; 
- top: 480px;
- font-family: "Rubik";
- font-style: normal;
- font-weight: 400;
- font-size: 18px;
- line-height: 21px;
- text-align: center;
+.bg-content .accept{
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  padding-top: 20px;
+  color: white;
+
 }
 
 .theBgButton {
-  position: absolute;
-  width: 377px;
-  height: 55px; 
-   left: 508px; 
-  top: 550px;
   display: flex;
   gap: 30px;
+  justify-content: center;
 }
+
 
 .theBgButton1 {
   display: flex;
@@ -119,14 +93,10 @@ position: absolute;
   align-items: center;
   padding: 18px 24px;
   gap: 10px;
-  /* position: absolute; */
-  width: 176px;
-  height: 55px;
-  left: 508px;
-  /* top: 432px; */
   background: #073fb8;
   border-radius: 40px;
-}
+  margin-top: 20px;
+} 
 
 .theBgButton2 {
   box-sizing: border-box;
@@ -136,15 +106,14 @@ position: absolute;
   align-items: center;
   padding: 18px 24px;
   gap: 10px;
-  /* position: absolute; */
-  width: 171px;
-  height: 55px;
-  /* left: 714px;
-  top: 432px; */
   background: rgba(22, 14, 51, 0.5);
   border: 2px solid #073fb8;
   border-radius: 40px;
+  margin-top: 20px;
+
 }
+
+
 
 .active-tabs {
   background: #FF5733 ;
@@ -407,6 +376,103 @@ input::-webkit-inner-spin-button {
 
 
 
+table{
+  margin: 0 auto;
+}
+
+th{
+  /* background-color: rgb(68, 109, 109); */
+  padding:5px 20px;
+  color:black;
+}
+
+.table-data {
+  text-align: center;
+  padding: 5px 10px;
+  /* background-color:rgb(206, 229, 236) */
+}
+
+
+/* @media only screen and (min-width: 1030px) and (max-width: 3500px) {
+
+  
+.thebg h1{
+  position: absolute;
+  width: 730px;
+  height: 190px; 
+  left: 900px;
+   top: 159px; 
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 95px;
+  text-align: center;
+}
+
+.thebg p{
+   position: absolute;
+  width: 540px;
+  height: 21px; 
+  left: 1000px; 
+  top: 396px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+}
+
+.thebg h6{
+  position: absolute;
+ width: 540px;
+ height: 21px; 
+ left: 1000px; 
+ top: 450px;
+ font-family: "Rubik";
+ font-style: normal;
+ font-weight: 400;
+ font-size: 18px;
+ line-height: 21px;
+ text-align: center;
+}
+
+.theBgButton {
+  position: absolute;
+  width: 377px;
+  height: 55px; 
+   left: 1100px; 
+  top: 550px;
+  display: flex;
+  gap: 30px;
+}
+
+.thebg .accept{
+  position: absolute;
+   width: 540px;
+   height: 21px; 
+   left: 1000px; 
+   top: 480px;
+   font-family: "Rubik";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   text-align: center;
+  }
+  
+  .litecoin{
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    left: 2000px;
+    top: 200px;
+    background: url(../../assets/images/LiteCoin-2.png);
+  }
+  
+
+} */
 
 @media only screen and (min-width: 540px) and (max-width: 1024px) {
 

@@ -8,6 +8,7 @@ import SellOrderView from "./SellOrderView";
 // import CreateBuyScoreTokenOrder from "./BuyFacet"
 import { readContract } from "@wagmi/core";
 import { BsCoin } from "react-icons/bs";
+import Bg from "../../assets/images/thebg.png"
 
 function Index() {
   //scroll
@@ -166,12 +167,14 @@ function Index() {
   return (
     <div>
       <div className="exchange">
+
         <div className="thebg">
+
+          <img src={Bg} alt=""/>
+
+          <div className="bg-content">
+
           <h1>Next Generation Crypto Trading</h1>
-
-          <div className="bitcoin"></div>
-
-          <div className="litecoin"></div>
 
           <p>Buy and Sell EkoScores and EkoTokens.</p>
 
@@ -198,10 +201,8 @@ function Index() {
               Sell Tokens
             </button>
           </div>
+        </div>
 
-          <div className="ethereum"></div>
-
-          <div className="monero"></div>
         </div>
 
         <div className="msRGContainer" ref={ref}>

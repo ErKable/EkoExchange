@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { useSigner } from "wagmi";
 import { readContract, erc20ABI } from "@wagmi/core";
 
-
 export default function BuyOrder({ orderInfo, trigger, data }) {
   const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280";
   const viewFacetAbi = require("../../abi/ViewFacetAbi.json");
@@ -70,67 +69,50 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
     <>
 
 
+<table>
+       <thead>
+         {/* <tr className="">
+         <th scope="col" className="px-6 py-3">
+                ORDER ID
+              </th>
+         <th scope="col" className="px-6 py-3">
+                Requesting Token
+              </th> 
+              <th scope="col" className="px-6 py-3">
+                Requesting Amount
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Giving Token
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Giving Amount
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+         </tr>    */}
+       </thead>   
+       <tbody>
+     
+         <tr className="flex gap-28">
+         <td class=" py-4 text-grey-700 ">{orderInfo.orderId}</td>
+          <td class=" py-4 text-grey-700">{tokenName}</td>
+          <td class=" py-4 text-grey-700">{orderInfo.requestingAmount}</td>
+          <td class="py-4 text-grey-700">{stableName}</td>
+          <td class="py-4 text-grey-700"> {orderInfo.givingAmount}</td>
+          <td class=" py-4 text-grey-700">
+            {" "}
+            <button onClick={() => buyFromSellOrder()} className="create-btn">
+              Buy from sell order
+            </button>{" "}
+          </td>
+            
+         </tr>
+        
+       </tbody>
+     </table>
       <div className="relative shadow-md sm:rounded-lg">
-        <table className="flex justify-center">
-          <thead>
-
-          </thead>
-          <tbody className="mx-auto block">
-            <td class="px-12 py-4 text-grey-700 ">{orderInfo.orderId}</td>
-            <td class="px-12 py-4 text-grey-700">{tokenName}</td>
-            <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
-            <td class="px-20 py-4 text-grey-700">{stableName}</td>
-            <td class="px-16 py-4 text-grey-700"> {orderInfo.givingAmount}</td>
-            <td class="px-16 py-4 text-grey-700"> <button onClick={() => buyFromSellOrder()} className="create-btn">Buy from sell order</button>  </td>
-          </tbody>
-        </table>
-
-        {/*  
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-          
-          
-       
-        </tbody>
-    </table>
-</div> */}
+    
 
         {/* <p>ORDER ID: {orderInfo.orderId}</p>
                 <p>Requesting Token: {tokenName}</p>
@@ -138,7 +120,7 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
                 <p>Giving Token: {stableName}</p>
                 <p>Giving Amount: {orderInfo.givingAmount}</p>
 
-                <Button onClick={() => buyFromSellOrder()}>Buy from sell order</Button>  */}
+                <button onClick={() => buyFromSellOrder()}>Buy from sell order</button>  */}
       </div>
     </>
   );
