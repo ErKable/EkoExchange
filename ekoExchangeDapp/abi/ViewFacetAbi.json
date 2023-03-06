@@ -1,0 +1,179 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ekoStableAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getAcceptedEkoStable",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "isAccepted",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAcceptedEkoStables",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "acceptedES",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "scoreTokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getAcceptedScoreToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "isAccepted",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAcceptedScoreTokens",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "acceptedST",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "ordersToShow",
+        "type": "uint256"
+      }
+    ],
+    "name": "getLatestBuyOrders",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "latestBuyIds",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "ordersToShow",
+        "type": "uint256"
+      }
+    ],
+    "name": "getLatestSellOrders",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "latestSellIds",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getOrderByOrderId",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "givingToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "givingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "requestingToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "requestingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "orderId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum DiamondStorage.orderType",
+            "name": "order",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "orderOwner",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct DiamondStorage.order",
+        "name": "rOrder",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ownerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getOrdersIdByOwner",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "idList",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

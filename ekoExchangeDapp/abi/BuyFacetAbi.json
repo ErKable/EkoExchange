@@ -1,0 +1,136 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ekoStable",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      }
+    ],
+    "name": "CannotRetrieveEkoStable",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "scoreTokenOwner",
+        "type": "address"
+      }
+    ],
+    "name": "CannotRetrieveScoreTokens",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "NotEnougthBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "orderOwner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "OrderAlreadyFullfilled",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ekoStable",
+        "type": "address"
+      }
+    ],
+    "name": "UnacceptedEkoStable",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "scoreTokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "UnacceptedScoreToken",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "UnexistingOrder",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ekoStableAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "givingAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "stAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "requestingAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "createBuyScoreTokensOrder",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "sellScoreTokenToABuyOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
