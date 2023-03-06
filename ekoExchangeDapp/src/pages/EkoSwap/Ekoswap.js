@@ -1,30 +1,10 @@
-// import Image from 'next/image'
-import React from 'react'
-import { RiSettings3Fill } from 'react-icons/ri'
-import { AiOutlineDown } from 'react-icons/ai'
-// import ethLogo from '../assets/eth.png'
-import { useContext } from 'react'
-// import { TransactionContext } from '../context/TransactionContext'
-import Modal from 'react-modal'
-// import { useRouter } from 'next/router'
-import TransactionLoader from './TransactionLoader.js'
-import Header from './Header.js'
-
-
-
-const style = {
-  wrapper: ``,
-  content: ``,
-  formHeader: ``,
-  transferPropContainer: ``,
-  transferPropInput: `bg-transparent placeholder:text-[#B2B9D2] outline-none mb-6 w-full text-2xl`,
-  currencySelector: `flex w-1/4`,
-  currencySelectorContent: `w-full h-min flex justify-between items-center bg-[#2D2F36] hover:bg-[#41444F] rounded-2xl text-xl font-medium cursor-pointer p-2 mt-[-0.2rem]`,
-  currencySelectorIcon: `flex items-center`,
-  currencySelectorTicker: `mx-2`,
-  currencySelectorArrow: `text-lg`,
-  confirmButton: `bg-[#2172E5] my-2 rounded-2xl py-6 px-8 text-xl font-semibold flex items-center justify-center cursor-pointer border border-[#2172E5] hover:border-[#234169]`,
-}
+import React, { useState } from 'react';
+import { RiSettings3Fill } from 'react-icons/ri';
+import { AiOutlineDown } from 'react-icons/ai';
+import Modal from 'react-modal';
+import { Link } from "react-router-dom";
+import Header from './Header';
+import TransactionLoader from './TransactionLoader';
 
 const customStyles = {
   content: {
@@ -40,83 +20,95 @@ const customStyles = {
   overlay: {
     backgroundColor: 'rgba(10, 11, 13, 0.75)',
   },
-}
+};
 
 const Ekoswap = () => {
-
-  // const { formData, handleChange, sendTransaction } =
-
-  //   useContext(TransactionContext)
-    
-  // const router = useRouter()
-
-  // const { formData, handleChange, sendTransaction } =
-  //   useContext(TransactionContext)
-  // const router = useRouter()
+  const [fromToken, setFromToken] = useState('EKO');
+  const [toToken, setToToken] = useState('USDT');
+  const [amount, setAmount] = useState('');
+  const [addressTo, setAddressTo] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleSubmit = async (e) => {
-    // const { addressTo, amount } = formData
-    e.preventDefault()
-
-    // if (!addressTo || !amount) return
-
-    // sendTransaction()
-  }
+    e.preventDefault();
+    console.log(`Swapping ${amount} ${fromToken} for ${toToken} and sending to ${addressTo}`);
+    setModalIsOpen(true);
+    // Perform the actual swap and send the transaction
+    // ...
+    // After the transaction is complete, close the modal
+    setModalIsOpen(false);
+  };
 
   return (
-
     <div className='pt-24 h-screen'>
-      <Header/>
-    <div className="w-screen flex items-center justify-center ">
-
-      <div className="bg-[#191B1F] w-[40rem] rounded-2xl p-4">
-        <div className="px-2 flex items-center justify-between font-semibold text-xl">
-          <div>Swap</div>
-          <div>
-            <RiSettings3Fill />
-          </div>
-        </div>
-        <div className="bg-[#20242A] my-3 rounded-2xl p-6 text-3xl  border border-[#20242A] hover:border-[#41444F]  flex justify-between">
-          <input
-            type="text"
-            className={style.transferPropInput}
-            placeholder="0.0"
-            pattern="^[0-9]*[.,]?[0-9]*$"
-            // onChange={(e) => handleChange(e, 'amount')}
-          />
-          <div className={style.currencySelector}>
-            <div className={style.currencySelectorContent}>
-              <div className={style.currencySelectorIcon}>
-                {/* <Image src={ethLogo} alt="eth logo" height={20} width={20} /> */}
-              </div>
-              <div className={style.currencySelectorTicker}>ETH</div>
-              <AiOutlineDown className={style.currencySelectorArrow} />
+      <Header />
+      <div className='w-screen flex items-center justify-center '>
+        <div className='bg-[#191B1F] w-[40rem] rounded-2xl p-4'>
+          <div className='px-2 flex items-center justify-between font-semibold text-xl'>
+            <div>Swap</div>
+            <div>
+              <RiSettings3Fill />
             </div>
           </div>
-        </div>
-        <div className={style.transferPropContainer}>
-          <input
-            type="text"
-            className={style.transferPropInput}
-            placeholder="0x..."
-            // onChange={(e) => handleChange(e, 'addressTo')}
-          />
-          <div className={style.currencySelector}></div>
-        </div>
-        <div onClick={(e) => handleSubmit(e)} className={style.confirmButton}>
-          Confirm
-        </div>
-      </div>
-
-      <Modal>
-      <TransactionLoader />
-      </Modal>
-      {/* <Modal isOpen={!!router.query.loading} style={customStyles}>
-        <TransactionLoader />
-      </Modal> */}
-    </div>
-    </div>  
-  )
-}
-
-export default Ekoswap
+          <div className='bg-[#20242A] my-3 rounded-2xl p-6 text-3xl  border border-[#20242A] hover:border-[#41444F]  flex justify-between'>
+            <input
+              type='text'
+              className='bg-transparent placeholder:text-[#B2B9D2] outline-none mb-6 w-full text-2xl'
+              placeholder='0.0'
+              pattern='^[0-9]*[.,]?[0-9]*$'
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+            <div className='flex w-1/4'>
+              <div className='w-full h-min flex justify-between items-center bg-[#2D2F36] hover:bg-[#41444F] rounded-2xl text-xl font-medium cursor-pointer p-2 mt-[-0.2rem]'>
+                <div className='flex items-center'>
+                  <div className='mx-2'>{fromToken}</div>
+                  <AiOutlineDown className='text-lg' />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='bg-[#20242A] my-3 rounded-2xl p-6 text-3xl  border border-[#20242A] hover:border-[#41444F]  flex justify-between'>
+            <input
+              type='text'
+              className='bg-transparent placeholder:text-[#B2B9D2] outline-none mb-6 w-full text-2xl'
+              placeholder='0.0'
+              readOnly
+              value={toToken === 'EKO' ? '0.0' : '∞'}
+              />
+              <div className='flex w-1/4'>
+              <div className='w-full h-min flex justify-between items-center bg-[#2D2F36] hover:bg-[#41444F] rounded-2xl text-xl font-medium cursor-pointer p-2 mt-[-0.2rem]'>
+              <div className='flex items-center'>
+              <div className='mx-2'>{toToken}</div>
+              <AiOutlineDown className='text-lg' />
+              </div>
+              </div>
+              </div>
+              </div>
+              <div className='bg-[#20242A] my-3 rounded-2xl p-6 text-3xl border border-[#20242A] hover:border-[#41444F]'>
+              <input
+              type='text'
+              className='bg-transparent placeholder:text-[#B2B9D2] outline-none mb-6 w-full text-2xl'
+              placeholder='Recipient address'
+              value={addressTo}
+              onChange={(e) => setAddressTo(e.target.value)}
+              />
+              </div>
+              <div className='flex justify-center'>
+              <button
+                         className='bg-[#9C51B6] w-1/2 rounded-full text-white font-bold text-lg py-4 hover:bg-[#A566C1]'
+                         onClick={handleSubmit}
+                       >
+              Swap
+              </button>
+              </div>
+              </div>
+              </div>
+              <Modal isOpen={modalIsOpen} style={customStyles}>
+              <TransactionLoader />
+              </Modal>
+              </div>
+              );
+              };
+              
+              export default Ekoswap;
