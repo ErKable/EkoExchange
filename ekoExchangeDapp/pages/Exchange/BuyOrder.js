@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
-import { useSigner } from "wagmi";
+import { useAccount, useSigner } from "wagmi";
 import { erc20ABI } from "@wagmi/core";
 import Loader from "../../components/Loader";
 import { Notyf } from 'notyf';
@@ -20,6 +21,7 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
   const [tokenName, setTokenName] = useState();
   const [stableName, setStableName] = useState();
   const { data: signer } = useSigner();
+  const {account, isConnected} = useAccount()
   const notyf = new Notyf({
     position: { x: "center", y: "top" },
     duration: 5000,
@@ -83,21 +85,27 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
 
   return (
     <>
-    <div className="relative shadow-md sm:rounded-lg">
-        <table className="flex justify-center">
-          <thead>
+    <div className="relative shadow-md sm:rounded-lg testCard">
+        <div className="cardinfo">
 
-          </thead>
-          <tbody className="mx-auto block">
-            <td class="px-12 py-4 text-grey-700 ">{orderInfo.orderId}</td>
-            <td class="px-12 py-4 text-grey-700">{tokenName}</td>
-            <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
-            <td class="px-20 py-4 text-grey-700">{stableName}</td>
-            <td class="px-16 py-4 text-grey-700">{orderInfo.givingAmount}</td>
-            <td class="px-16 py-4 text-grey-700">{isApproved ? null : (isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>)}</td>
+            <div className='orderInfo'>
+              <Text b>Requesting ST</Text>       
+            <Text>{tokenName}</Text>
+          </div>
+            <div className='orderInfo'>
+              <Text b >Requesting Amount</Text>       
+            <Text>{orderInfo.requestingAmount}</Text>
+            </div>
+        </div>
+        
+            <div className='orderInfo'><Text b >Giving ES</Text>       
+            <Text>{stableName}</Text></div>
+            <div className='orderInfo'><Text b >Giving Amount</Text>       
+            <Text>{orderInfo.givingAmount}</Text></div>
+            
+            <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>}</td>
             <td class="px-16 py-4 text-grey-700">{isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>}</td>
-          </tbody>
-        </table>
+        
       </div>
     </>
   );

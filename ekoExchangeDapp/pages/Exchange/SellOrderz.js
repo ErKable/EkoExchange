@@ -6,7 +6,7 @@ import { erc20ABI } from '@wagmi/core'
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import Loader from "../../components/Loader";
-
+import { Text } from "@nextui-org/react";
 export default function SellOrderz({orderInfo, trigger}){  
     const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280" 
     const viewFacetAbi = require('../../abi/ViewFacetAbi.json')
@@ -89,25 +89,28 @@ export default function SellOrderz({orderInfo, trigger}){
 
 
         <>
+                <div className="relative shadow-md sm:rounded-lg testCard">
+        <div className="cardinfo">
 
-
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table  className="flex justify-center">
-            <thead></thead>
-            <tbody>
-              <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
-              <td class="px-12 py-4 text-grey-700">{stableName}</td>
-              <td class="px-12 py-4 text-grey-700">{orderInfo.givingAmount}</td>
-              <td class="px-20 py-4 text-grey-700">{tokenName}</td>
-              <td class="px-16 py-4 text-grey-700"> {orderInfo.requestingAmount}</td>
-              <td class="px-16 py-4 text-grey-700">  
-              {isApproved ? null : (isLoading ?  <Loader/> : <button onClick={() => approve()} className="create-btn" >Approve {stableName}</button> ) }
-              </td>
-              <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn" >Buy {tokenName}</button> }</td>
-            </tbody>
-          </table>
-
+            <div className='orderInfo'>
+              <Text b>Requesting ST</Text>       
+            <Text>{stableName}</Text>
+          </div>
+            <div className='orderInfo'>
+              <Text b >Requesting Amount</Text>       
+            <Text>{orderInfo.givingAmount}</Text>
+            </div>
         </div>
+        
+            <div className='orderInfo'><Text b >Giving ES</Text>       
+            <Text>{tokenName}</Text></div>
+            <div className='orderInfo'><Text b >Giving Amount</Text>       
+            <Text>{orderInfo.requestingAmount}</Text></div>
+            
+            <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>}</td>
+            <td class="px-16 py-4 text-grey-700">{isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>}</td>
+        
+      </div>
         </>
         
     )

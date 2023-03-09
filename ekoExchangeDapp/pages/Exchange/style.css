@@ -6,7 +6,7 @@
   text-align: center;
   color: white;
   position: relative;
-  
+  align-items: center;
 }
 
 .bitcoin{
@@ -338,7 +338,7 @@ p {
   padding: 10px;
   border-radius: 10px;
   color: white;
-  margin-right: 20px;
+  margin-right: 10px;
   font-weight: 600;
 }
 
@@ -366,6 +366,63 @@ input::-webkit-inner-spin-button {
     -webkit-backdrop-filter: blur(6px);
     border: 1px solid rgba(220, 88, 0, 0.01);
  
+}
+
+.testCard{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ width: 250px;
+ padding: 2%;
+ margin: 1%;
+}
+
+.orderInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 600px;
+  width: 100%;
+}
+
+.orderDisplay::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.orderDisplay {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.cardinfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .lds-facebook {

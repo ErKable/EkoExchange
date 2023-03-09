@@ -285,24 +285,7 @@ function Index() {
                   : "mSRG-container-inner"
               }
             >
-              <form className="flex justify-center gap-10">
-                <div>
-                  <h3>Amount</h3>
-
-                  <div className="amount">
-                    <input placeholder="Enter Amount" />
-                    <button>Search</button>
-                  </div>
-                </div>
-
-                <div>
-                  <h3>Payment</h3>
-                  <select>
-                    <option>EKOSCORES</option>
-                    <option>EKOTOKEN</option>
-                  </select>
-                </div>
-              </form>
+              
 
               <button className="p-3 mt-4 text-white text-lg rounded-xl block mx-auto bg-btn-bg">
                 <div>
@@ -339,24 +322,7 @@ function Index() {
                   : "mSRG-container-inner"
               }
             >
-              <form className="flex justify-center gap-10">
-                <div>
-                  <h3>Amount</h3>
-
-                  <div className="amount">
-                    <input placeholder="Enter Amount" />
-                    <button>Search</button>
-                  </div>
-                </div>
-
-                <div>
-                  <h3>Payment</h3>
-                  <select>
-                    <option>EKOSCORES</option>
-                    <option>EKOTOKEN</option>
-                  </select>
-                </div>
-              </form>
+              
 
               <button className="p-3 mt-4 text-white text-lg rounded-xl bg-btn-bg block mx-auto">
                 <div>
