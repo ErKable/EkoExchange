@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
-import { useSigner } from "wagmi";
+import { useAccount, useSigner } from "wagmi";
 import { erc20ABI } from "@wagmi/core";
 import Loader from "../../components/Loader";
 import { Notyf } from 'notyf';
@@ -21,6 +21,7 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
   const [tokenName, setTokenName] = useState();
   const [stableName, setStableName] = useState();
   const { data: signer } = useSigner();
+  const {account, isConnected} = useAccount()
   const notyf = new Notyf({
     position: { x: "center", y: "top" },
     duration: 5000,
