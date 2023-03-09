@@ -13,54 +13,32 @@ function SellOrderView({ ordersInfo, trigger }) {
 
   return (
     <>
-      <div>
-        <table className="text-black flex justify-center">
-          <thead className="text-black flex justify-center">
-            <tr className="text-black flex justify-center">
-              <th scope="col" className="px-6 py-3">
-                ORDER ID
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Requesting Token
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Requesting Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Token
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td> */}
-          </tbody>
-        </table>
 
-        <div className="" >
-          {ordersInfo ? (
+<div style={{width: '100%', display:'flex', flexDirection:'row', justifyContent:'center'}}>
+    <Text
+        h1
+        size={60}
+        css={{
+          color: '#E1B530',
+        }}
+        weight="bold"
+      >
+        Latest Sell Order Created
+      </Text></div>
+    <div className="orderDisplay">     
+        {ordersInfo ? (
             ordersInfo.map((orderInfo) => {
               return <SellOrderz orderInfo={orderInfo} trigger={trigger} />;
             })
           ) : (
             <Loader />
           )}
-        </div>
+      {/*   </tbody>
+      </table>    */}
 
-        <CreateBuyScoreTokenOrder exchangeAddress={exchangeAddress} />
-        {/* <SellScoreTokenToBuyOrder exchangeAddress={exchangeAddress} /> */}
-        {/* <GetLatestBuyOrders exchangeAddress={exchangeAddress} /> */}
-      </div>
-    </>
+        
+    </div>
+</>
   );
 }
 

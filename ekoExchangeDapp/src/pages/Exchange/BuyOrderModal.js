@@ -1,48 +1,63 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { Input, Button, Dropdown } from "@nextui-org/react";
+import { Input, Dropdown } from "@nextui-org/react";
 import { useSigner } from "wagmi";
-import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { erc20ABI } from "@wagmi/core";
 import { readContract } from "@wagmi/core";
 import "./style.css";
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+import Loader from "../../components/Loader";
+
 
 function BuyOrderModal({ show, onCancel, trigger }) {
 
   const [selected, setSelected] = React.useState(new Set(["EkoStable"]));
-
-  const [selectedSecond, setSelectedSecond] = React.useState(
-    new Set(["ScoreToken"])
-  );
-
-  const selectedValue = React.useMemo(
-    () => Array.from(selected).join(", ").replaceAll("_", " "),
+  const [selectedSecond, setSelectedSecond] = React.useState(new Set(["ScoreToken"]));
+  const selectedValue = React.useMemo(() =>
+    Array.from(selected).join(", ").replaceAll("_", " "),
     [selected]
   );
-
-  const secondSelectedValue = React.useMemo(
-    () => Array.from(selectedSecond).join(", ").replaceAll("_", " "),
+  const secondSelectedValue = React.useMemo(() => 
+    Array.from(selectedSecond).join(", ").replaceAll("_", " "),
     [selectedSecond]
   );
-
   const [acceptedStables, setAcceptedStables] = useState();
   const [acceptedScoreTokens, setAcceptetScoreTokens] = useState();
-  const [ekoAddress, setEkoAddress] = useState();
+  const [ekoAddress, setEkoAddress] = useState('0');
   const [ekoAmount, setEkoAmount] = useState();
   const [stAmount, setSTAmount] = useState();
-  const [stAddress, setSTaddress] = useState();
+  const [stAddress, setSTaddress] = useState('0');
+  const [stBal, setSTBal] = useState('0.00')
+  const [ekoBal, setEkoBal] = useState("0.00")
+  const [isLoading, setIsLoading] = useState(false)
   const BuyFacetAbi = require("../../abi/BuyFacetAbi.json");
   const { data: signer } = useSigner();
-  //console.log(signer)
   const viewFacetAbi = require("../../abi/ViewFacetAbi.json");
-  const sellFacetAbi = require("../../abi/SellFacetAbi.json");
   const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280";
-  const ekoUSDTaddress = "0x1AafC53444bd066a3F29482e7e75511baBb2d770";
+  const RPC = "https://data-seed-prebsc-1-s3.binance.org:8545/";
+  const provider = new ethers.providers.JsonRpcProvider(RPC);
+  const notyf = new Notyf({
+    position: { x: "center", y: "top" },
+    duration: 5000,
+  });
+
   useEffect(() => {
     fetchScoreTokenAddress();
     fetchAcceptedStable();
   }, []);
+
+  useEffect(() => {
+    stableBalance()
+  }, [ekoAddress])
+
+  useEffect(() => {
+    tokenBalance()
+  }, [stAddress])
+
+
+
   async function fetchScoreTokenAddress() {
     const data = await readContract({
       address: exchangeAddress,
@@ -90,26 +105,73 @@ function BuyOrderModal({ show, onCancel, trigger }) {
     setAcceptedStables(stables);
   }
 
-  async function createBuyScoreTokenOrder() {
-    const ekoStable = new ethers.Contract(ekoAddress, erc20ABI, signer);
-    let approve = await ekoStable.approve(exchangeAddress, ekoAmount);
-    await approve.wait();
-    const buyFacet = new ethers.Contract(exchangeAddress, BuyFacetAbi, signer);
-    let tx = await buyFacet.createBuyScoreTokensOrder(
-      ekoAddress,
-      ekoAmount,
-      stAddress,
-      stAmount
-    );
-    await tx.wait();
-    trigger();
+  async function stableBalance(){
+    if(ekoAddress != 0){
+      if(signer){
+        try{      
+          const c = new ethers.Contract(ekoAddress, erc20ABI, provider)
+          const bal = await c.balanceOf(signer._address)
+          console.log("signer._address", signer._address)
+          console.log('bal', ethers.utils.parseUnits(bal.toString(), 9).toString())
+          setEkoBal(ethers.utils.parseUnits(bal.toString(),9).toString())
+        } catch{}
+      } else {
+        //notyf.error("Remember to log in with your wallet to create an order")
+      }
+    }
   }
+
+  async function tokenBalance(){
+    if(stAddress != 0){
+      if(signer){
+        try{      
+          const c = new ethers.Contract(stAddress, erc20ABI, provider)
+          const bal = await c.balanceOf(signer._address)
+          console.log("signer._address", signer._address)
+          console.log('bal', ethers.utils.parseUnits(bal.toString(), 9).toString())
+          setSTBal(ethers.utils.parseUnits(bal.toString(),9).toString())
+        } catch{}
+      } else {
+        //notyf.error("Remember to log in with your wallet to create an order")
+      }
+    }
+  }
+
+
+  async function approve(){
+    try{
+      const ekoStable = new ethers.Contract(ekoAddress, erc20ABI, signer);
+      let approve = await ekoStable.approve(exchangeAddress, ekoAmount);
+      setIsLoading(true)
+      await approve.wait();
+      notyf.success("ES approve successfully")
+    } catch{
+      notyf.error("Approve failed")
+    } finally{
+      setIsLoading(false)
+    }
+  }
+
+  async function createBuyScoreTokenOrder() {
+    try{
+      const buyFacet = new ethers.Contract(exchangeAddress, BuyFacetAbi, signer);
+      let tx = await buyFacet.createBuyScoreTokensOrder(ekoAddress, ekoAmount, stAddress, stAmount);
+      setIsLoading(true)
+      await tx.wait();
+      notyf.success('Order created successfully')
+      trigger();
+    }catch{
+      notyf.error("Order creation failed")
+    }finally{
+      setIsLoading(false)
+    }
+  }
+  
   const submitData = (event) => {
-    event.preventDefault();
-    // onSubmit(formData);
+    event.preventDefault();    
     onCancel();
   };
-  console.log(ekoAddress);
+  //console.log(ekoAddress);
 
   return show ? (
     <div className="modal-overlay">
@@ -148,9 +210,9 @@ function BuyOrderModal({ show, onCancel, trigger }) {
               </Dropdown>
             </div>
           </div>
-
+                      
           <div className="modal-section relative block">
-            <label>Giving Amount</label>
+            <label>EkoStable Amount</label>
             <div className=" mt-3">
               <Input
                 placeholder="Insert ekostable amount"
@@ -162,22 +224,9 @@ function BuyOrderModal({ show, onCancel, trigger }) {
               />
             </div>
           </div>
+                      <p style={{color: 'black'}}>EkoStable Balance: {ekoBal}</p>
 
-          <div className="modal-section block">
-            <label>Requesting Amount</label>
-            <div className=" mt-3">
-              <Input
-                placeholder="Insert requesting amount"
-                value={stAmount}
-                onChange={(e) => setSTAmount(e.target.value)}
-                className="input-edit"
-                type="number"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="modal-section relative block">
+                      <div className="modal-section relative block">
             <label>Select ScoreToken Address</label>
             <div className="flex justify-center w-full mt-3">
               <Dropdown>
@@ -208,14 +257,31 @@ function BuyOrderModal({ show, onCancel, trigger }) {
               </Dropdown>
             </div>
           </div>
+          <div className="modal-section block">
+            <label>Requesting Amount</label>
+            <div className=" mt-3">
+              <Input
+                placeholder="Insert requesting amount"
+                value={stAmount}
+                onChange={(e) => setSTAmount(e.target.value)}
+                className="input-edit"
+                type="number"
+                required
+              />
+            </div>
+          </div>
+          <p style={{color: 'black'}}>ST bal {stBal} </p>
+          
 
+                        
           <div className="flex mx-auto justify-center mt-10 ">
-            <button
-              onClick={() => createBuyScoreTokenOrder()}
-              className="create-btn"
-            >
-              Create buy order
-            </button>
+            {isLoading ? <Loader /> 
+              : <button onClick={() => approve()} className="create-btn">Approve</button>
+            }
+
+           {isLoading ? <Loader /> 
+              :  <button onClick={() => createBuyScoreTokenOrder()} className="create-btn">Create buy order</button>
+           }
             <button onClick={onCancel} className="text-red-500 text-lg">
               {" "}
               Cancel{" "}

@@ -1,126 +1,110 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
 import { useSigner } from "wagmi";
-import { readContract, erc20ABI } from "@wagmi/core";
+import { erc20ABI } from "@wagmi/core";
+import Loader from "../../components/Loader";
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
 
 export default function BuyOrder({ orderInfo, trigger, data }) {
   const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280";
   const viewFacetAbi = require("../../abi/ViewFacetAbi.json");
   const buyFacetAbi = require("../../abi/BuyFacetAbi.json");
-  const [orderId, setOrderId] = useState();
   const [ekoAddress, setEkoAddress] = useState();
   const [ekoAmount, setEkoAmount] = useState();
-
+  const [isLoading, setIsLoading] = useState(false)
+  const [isApproved, setIsApproved] = useState(false)
+  const RPC = "https://data-seed-prebsc-1-s3.binance.org:8545/";
+  const provider = new ethers.providers.JsonRpcProvider(RPC);
   const [tokenName, setTokenName] = useState();
   const [stableName, setStableName] = useState();
   const { data: signer } = useSigner();
+  const notyf = new Notyf({
+    position: { x: "center", y: "top" },
+    duration: 5000,
+  });
 
   useEffect(() => {
     fetchEkoStableAddress();
     getTokenNames();
   }, []);
 
-  async function fetchEkoStableAddress() {
-    const data = await readContract({
-      address: exchangeAddress,
-      abi: viewFacetAbi,
-      functionName: "getOrderByOrderId",
-      args: [orderInfo.orderId],
-    });
-    console.log(data.requestingToken);
-    setEkoAddress(data.requestingToken);
+  async function fetchEkoStableAddress() {  
+    const c = new ethers.Contract(exchangeAddress, viewFacetAbi, provider)
+    const data = await c.getOrderByOrderId(orderInfo.orderId)
+    console.log('Buy order ES address',data.requestingToken);
+    setEkoAddress('Buy order ES amount',data.requestingToken);
     console.log(Number(data.requestingAmount));
     setEkoAmount(Number(data.requestingAmount));
   }
 
   async function getTokenNames() {
-    const stable = await readContract({
-      address: orderInfo.givingToken,
-      abi: erc20ABI,
-      functionName: "name",
-    });
+    const es = new ethers.Contract(orderInfo.givingToken, erc20ABI, provider)
+    const stable = await es.name()
+    console.log('buy order ES name', stable)
     setStableName(stable);
-    const token = await readContract({
-      address: orderInfo.requestingToken,
-      abi: erc20ABI,
-      functionName: "name",
-    });
+ 
+    const st = new ethers.Contract(orderInfo.requestingToken, erc20ABI, provider)
+    const token = await st.name()
+    console.log('buy order ST name', token)
     setTokenName(token);
   }
 
-  async function buyFromSellOrder() {
-    const token = new ethers.Contract(
-      orderInfo.requestingToken,
-      erc20ABI,
-      signer
-    );
-    let app = await token.approve(exchangeAddress, orderInfo.requestingAmount);
+  async function approve(){
+    try{
+      const token = new ethers.Contract(orderInfo.requestingToken, erc20ABI, signer);
+      let app = await token.approve(exchangeAddress, orderInfo.requestingAmount);
+      setIsLoading(true)
+      await app.wait();
+      notyf.success(`${tokenName} approve succesfully`)
+      setIsApproved(true)
+    } catch{
+      notyf.error(`Error while approving ${tokenName}`)
+    }finally{
+      setIsLoading(false)
+    }
+  }
 
-    await app.wait();
-
-    const buyFacet = new ethers.Contract(exchangeAddress, buyFacetAbi, signer);
-    let buy = await buyFacet.sellScoreTokenToABuyOrder(orderInfo.orderId);
-    await buy.wait();
-    trigger();
+  async function buyFromSellOrder() {   
+    try{
+      const buyFacet = new ethers.Contract(exchangeAddress, buyFacetAbi, signer);
+      let buy = await buyFacet.sellScoreTokenToABuyOrder(orderInfo.orderId);
+      setIsLoading(true)
+      await buy.wait();
+      notyf.success(`${tokenName} sold for ${stableName}`)
+      trigger();
+    } catch{
+      notyf.error(`Error while exchanging tokens`)
+    } finally{
+      setIsLoading(false)
+    }
   }
 
   return (
     <>
+    <div className="relative shadow-md sm:rounded-lg testCard">
+        <div className="cardinfo">
 
-
-<table>
-       <thead>
-         {/* <tr className="">
-         <th scope="col" className="px-6 py-3">
-                ORDER ID
-              </th>
-         <th scope="col" className="px-6 py-3">
-                Requesting Token
-              </th> 
-              <th scope="col" className="px-6 py-3">
-                Requesting Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Token
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Giving Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-         </tr>    */}
-       </thead>   
-       <tbody>
-     
-         <tr className="flex gap-28">
-         <td class=" py-4 text-grey-700 ">{orderInfo.orderId}</td>
-          <td class=" py-4 text-grey-700">{tokenName}</td>
-          <td class=" py-4 text-grey-700">{orderInfo.requestingAmount}</td>
-          <td class="py-4 text-grey-700">{stableName}</td>
-          <td class="py-4 text-grey-700"> {orderInfo.givingAmount}</td>
-          <td class=" py-4 text-grey-700">
-            {" "}
-            <button onClick={() => buyFromSellOrder()} className="create-btn">
-              Buy from sell order
-            </button>{" "}
-          </td>
-            
-         </tr>
+            <div className='orderInfo'>
+              <Text b>Requesting ST</Text>       
+            <Text>{tokenName}</Text>
+          </div>
+            <div className='orderInfo'>
+              <Text b >Requesting Amount</Text>       
+            <Text>{orderInfo.requestingAmount}</Text>
+            </div>
+        </div>
         
-       </tbody>
-     </table>
-      <div className="relative shadow-md sm:rounded-lg">
-    
-
-        {/* <p>ORDER ID: {orderInfo.orderId}</p>
-                <p>Requesting Token: {tokenName}</p>
-                <p>Requesting Amount: {orderInfo.requestingAmount}</p>
-                <p>Giving Token: {stableName}</p>
-                <p>Giving Amount: {orderInfo.givingAmount}</p>
-
-                <button onClick={() => buyFromSellOrder()}>Buy from sell order</button>  */}
+            <div className='orderInfo'><Text b >Giving ES</Text>       
+            <Text>{stableName}</Text></div>
+            <div className='orderInfo'><Text b >Giving Amount</Text>       
+            <Text>{orderInfo.givingAmount}</Text></div>
+            
+            <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>}</td>
+            <td class="px-16 py-4 text-grey-700">{isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>}</td>
+        
       </div>
     </>
   );

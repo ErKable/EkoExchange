@@ -20,13 +20,7 @@ function SellOrder() {
 
 
       <form className="buyForm">
-        <div class="w-full relative mb-6 group block mx-auto">
-          <h4 className="mt-2">Choose Token Type</h4>
-          <select className="mt-4">
-            <option>EKOSCORES</option>
-            <option>EKOTOKEN</option>
-          </select>
-        </div>
+        
 
         <div class="relative z-0 w-full mb-9 group">
           <input

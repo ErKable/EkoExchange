@@ -1,10 +1,12 @@
-import { Button } from "@nextui-org/react";
 import React from 'react'
 import { useState, useEffect} from 'react'
 import { ethers } from 'ethers'
 import { useSigner } from 'wagmi';
-import { readContract, erc20ABI } from '@wagmi/core'
-
+import { erc20ABI } from '@wagmi/core'
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+import Loader from "../../components/Loader";
+import { Text } from "@nextui-org/react";
 export default function SellOrderz({orderInfo, trigger}){  
     const exchangeAddress = "0x62853E9eBdaaF86C1835Bb959bb0A43e508a1280" 
     const viewFacetAbi = require('../../abi/ViewFacetAbi.json')
@@ -12,7 +14,10 @@ export default function SellOrderz({orderInfo, trigger}){
     const [orderId, setOrderId] = useState()
     const [ekoAddress, setEkoAddress] = useState()
     const [ekoAmount, setEkoAmount] = useState()
-
+    const [isLoading, setIsLoading] = useState(false)
+    const [isApproved, setIsApproved] = useState(false)
+    const RPC = "https://data-seed-prebsc-1-s3.binance.org:8545/";
+    const provider = new ethers.providers.JsonRpcProvider(RPC);
     const[tokenName, setTokenName] = useState()
     const[stableName, setStableName] = useState()
     const { data: signer } = useSigner();
@@ -22,78 +27,90 @@ export default function SellOrderz({orderInfo, trigger}){
         getTokenNames()
     }, [orderId])
 
-    async function getTokenNames(){
-        const stable = await readContract({
-            address: orderInfo.requestingToken,
-            abi: erc20ABI,
-            functionName: 'name',
-        })
+    const notyf = new Notyf({
+        position: { x: "center", y: "top" },
+        duration: 5000,
+    });
+
+    async function getTokenNames(){     
+        const es = new ethers.Contract(orderInfo.requestingToken, erc20ABI, provider)
+        const stable = await es.name()
+        //console.log('sell order ES name', stable)
         setStableName(stable)
-        const token = await readContract({
-            address: orderInfo.givingToken,
-            abi: erc20ABI,
-            functionName: 'name',
-        })
+       
+        const st = new ethers.Contract(orderInfo.givingToken, erc20ABI, provider)
+        const token = await st.name()
+        //console.log('sell order ST name', token)
+        setTokenName(token);
         setTokenName(token)
     }
 
-    async function fetchEkoStableAddress(){
-        const data = await readContract({
-            address: exchangeAddress,
-            abi: viewFacetAbi,
-            functionName: 'getOrderByOrderId',
-            args:[orderInfo.orderId]
-          })
-        console.log(data.requestingToken)
-        setEkoAddress(data.requestingToken)
-        console.log(Number(data.requestingAmount))
+    async function fetchEkoStableAddress(){      
+        const c = new ethers.Contract(exchangeAddress, viewFacetAbi, provider)
+        const data = await c.getOrderByOrderId(orderInfo.orderId)
+        //console.log('Sell order  eko address',data.requestingToken)
+        setEkoAddress('Sell order eko amount',data.requestingToken)
+        //console.log(Number(data.requestingAmount))
         setEkoAmount(Number(data.requestingAmount))
     }
 
-    async function buyFromSellOrder(){
-        const token = new ethers.Contract(orderInfo.givingToken, erc20ABI, signer)
-        let app = await token.approve(exchangeAddress, orderInfo.givingAmount)
-        await app.wait()
-
+    async function buyFromSellOrder(){     
+        try{
         const sellFacet = new ethers.Contract(exchangeAddress, sellFacetAbi, signer)
         let buy = await sellFacet.buyScoreTokensFromSellOrder(orderInfo.orderId)
+        setIsLoading(true)
         await buy.wait()
         trigger()
-    }
+        notyf.success("Order bought sucessfully")
+        } catch {
+            notyf.error("Error while buying")
+        } finally{
+            setIsLoading(false)
+        }
 
+    }
+    async function approve(){
+        try{
+            const token = new ethers.Contract(orderInfo.requestingToken, erc20ABI, signer)
+            let app = await token.approve(exchangeAddress, orderInfo.givingAmount)
+            setIsLoading(true)
+            await app.wait()
+            setIsApproved(true)
+            notyf.success(`${stableName} approved succesfully`)
+        } catch {
+            notyf.error(`Error while approving ${stableName}`)
+        } finally{
+            setIsLoading(false)
+        }
+    }
     
 
     return(
 
 
         <>
+                <div className="relative shadow-md sm:rounded-lg testCard">
+        <div className="cardinfo">
 
-
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table  className="flex justify-center">
-            <thead></thead>
-            <tbody>
-              <td class="px-12 py-4 text-grey-700">{orderInfo.orderId}</td>
-              <td class="px-12 py-4 text-grey-700">{tokenName}</td>
-              <td class="px-12 py-4 text-grey-700">{orderInfo.requestingAmount}</td>
-              <td class="px-20 py-4 text-grey-700">{stableName}</td>
-              <td class="px-16 py-4 text-grey-700"> {orderInfo.givingAmount}</td>
-              <td class="px-16 py-4 text-grey-700">  <button onClick={() => buyFromSellOrder()} className="create-btn" >Buy from sell order</button> </td>
-            </tbody>
-          </table>
-{/*         
-            <div style={{height: '400px', width: '200 px', border: 'solid 2px black'}}>
-                <p>ORDER ID: {orderInfo.orderId}</p>
-                <p>Requesting Token: {stableName}</p>
-                <p>Requesting Amount: {orderInfo.requestingAmount}</p>
-                <p>Giving Token: {tokenName}</p>
-                <p>Giving Amount: {orderInfo.givingAmount}</p>
-
-                <Button onClick={() => buyFromSellOrder()}>Buy from sell order</Button> 
-
-            </div> */}
-
+            <div className='orderInfo'>
+              <Text b>Requesting ST</Text>       
+            <Text>{stableName}</Text>
+          </div>
+            <div className='orderInfo'>
+              <Text b >Requesting Amount</Text>       
+            <Text>{orderInfo.givingAmount}</Text>
+            </div>
         </div>
+        
+            <div className='orderInfo'><Text b >Giving ES</Text>       
+            <Text>{tokenName}</Text></div>
+            <div className='orderInfo'><Text b >Giving Amount</Text>       
+            <Text>{orderInfo.requestingAmount}</Text></div>
+            
+            <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>}</td>
+            <td class="px-16 py-4 text-grey-700">{isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>}</td>
+        
+      </div>
         </>
         
     )
