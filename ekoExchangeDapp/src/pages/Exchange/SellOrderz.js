@@ -107,8 +107,8 @@ export default function SellOrderz({orderInfo, trigger}){
             <div className='orderInfo'><Text b >Giving Amount</Text>       
             <Text>{orderInfo.requestingAmount}</Text></div>
             
-            <td class="px-16 py-4 text-grey-700">{isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>}</td>
-            <td class="px-16 py-4 text-grey-700">{isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>}</td>
+            <td class="px-16 py-4 text-grey-700">{isApproved ? null : (isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {stableName}</button>)}</td>
+            <td class="px-16 py-4 text-grey-700">{isApproved ?(isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Buy {tokenName}</button>) : null}</td>
         
       </div>
         </>
