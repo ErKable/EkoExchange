@@ -176,9 +176,11 @@ function Index() {
 
   return (
     <div>
-      <div className="exchange">
-        <div className="thebg">
-          <h1>Next Generation Crypto Trading</h1>
+      <div className="exchange text-primary dark:text-white">
+
+        <div className="thebg mt-20">
+
+          <h1 className="w-2/5 block mx-auto py-10" >Next Generation Crypto Trading</h1>
 
           <div className="bitcoin"></div>
 
@@ -201,13 +203,13 @@ function Index() {
           </div>
 
           <div className="theBgButton">
-            <button className="theBgButton1" onClick={handleClick}>
+            <div className="theBgButton1 text-white font-bold" onClick={handleClick}>
               Buy Tokens
-            </button>
+            </div>
 
-            <button className="theBgButton2" onClick={handleClick}>
+            <div className="theBgButton2 font-bold" onClick={handleClick}>
               Sell Tokens
-            </button>
+            </div>
           </div>
 
           <div className="ethereum"></div>

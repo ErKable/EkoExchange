@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
 import { useAccount, useSigner } from "wagmi";
 import { erc20ABI } from "@wagmi/core";
@@ -85,23 +84,24 @@ export default function BuyOrder({ orderInfo, trigger, data }) {
 
   return (
     <>
-    <div className="relative shadow-md sm:rounded-lg testCard">
+    <div className="relative shadow-lg sm:rounded-lg testCard dark:bg-slate-800 text-black dark:text-white">
+
         <div className="cardinfo">
 
             <div className='orderInfo'>
-              <Text b>Requesting ST</Text>       
-            <Text>{tokenName}</Text>
+              <h1>Requesting ST</h1>       
+            <h1>{tokenName}</h1>
           </div>
             <div className='orderInfo'>
-              <Text b >Requesting Amount</Text>       
-            <Text>{orderInfo.requestingAmount}</Text>
+              <h1 >Requesting Amount</h1>       
+            <h1>{orderInfo.requestingAmount}</h1>
             </div>
         </div>
         
-            <div className='orderInfo'><Text b >Giving ES</Text>       
-            <Text>{stableName}</Text></div>
-            <div className='orderInfo'><Text b >Giving Amount</Text>       
-            <Text>{orderInfo.givingAmount}</Text></div>
+            <div className='orderInfo'><h1 >Giving ES</h1>       
+            <h1>{stableName}</h1></div>
+            <div className='orderInfo'><h1>Giving Amount</h1>       
+            <h1>{orderInfo.givingAmount}</h1></div>
             
             <td class="px-16 py-4 text-grey-700">{isApproved ? null : (isLoading ? <Loader /> : <button onClick={() => approve()} className="create-btn">Approve {tokenName}</button>)}</td>
             <td class="px-16 py-4 text-grey-700">{isApproved? (isLoading ?  <Loader /> : <button onClick={() => buyFromSellOrder()} className="create-btn">Sell your {tokenName}</button>) : null}</td>

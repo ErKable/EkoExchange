@@ -11,7 +11,6 @@ function Homepage() {
     <div>
 
       <FirstSection/>
-      <Features/>
       <Footer/>
    
     </div>
