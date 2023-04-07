@@ -8,6 +8,7 @@ import { ethers } from 'ethers';
 import { buyTable } from "../../constants";
 import SellOrderComp from './SellOrderComp';
 import BuyOrderComp from './BuyOrderComp';
+import { Loading } from '@nextui-org/react';
 
 
 
@@ -246,7 +247,7 @@ const Table = () => {
         <tbody>
              {/* <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">  */}
 
-
+{/* 
       {buyOrdersInfo && option === '1' ?  buyOrdersInfo.map((order) =>{
         return(
             <SellOrderComp order={order} />
@@ -258,7 +259,24 @@ const Table = () => {
         return(
             <BuyOrderComp order={order}/>
         )
-      }) : 'Loading'}
+        }) : 'Loading'} */}
+        
+        {buyOrdersInfo && option === '1' ?  buyOrdersInfo.map((order) =>{
+        return(
+            <SellOrderComp order={order} />
+        )
+        }) : sellOrdersInfo && option === '2' ? sellOrdersInfo.map((order) => {
+            return(
+                <BuyOrderComp order={order}/>
+            )
+            }) : <div style ={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}
+            ><Loading size="xl" /></div>}
+
 
 
         </tbody>
