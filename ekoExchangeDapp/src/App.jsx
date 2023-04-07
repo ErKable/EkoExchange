@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Lend from "./pages/Lend/Lend";
 import Swap from "./pages/Swap/Swap";
 import Exchange from "./pages/Exchange/Exchange"
-
+import OwnerApi from './pages/OwnerApi/OwnerApi'
 import '@rainbow-me/rainbowkit/styles.css';
 
 import {
@@ -52,6 +52,7 @@ const App = () => (
         <Route path='/p2p' element={<Lend/>} />
         <Route path='/swap' element={<Swap/>} />
         <Route path='/exchange' element={<Exchange/>} />
+        <Route path='/ownerApi' element={<OwnerApi/>} />
         </Routes>
       </Router>
   </div>
