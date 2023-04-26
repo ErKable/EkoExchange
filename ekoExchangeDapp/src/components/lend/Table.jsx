@@ -275,7 +275,7 @@ const Table = () => {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}
-            ><Loading size="xl" /></div>}
+            ></div>}
 
 
 
@@ -284,7 +284,7 @@ const Table = () => {
         
     </table>
 
-    
+    <Loading className="flex items-center" size="xl" />
 
 
 {/*     {choice && 

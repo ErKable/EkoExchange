@@ -23,23 +23,23 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Rewards",
+    title: "Quick Swaps",
     content:
-      "The best swap deals offer some tantalizing combinations of promotions and prizes",
+      "The best quick and easy steps to swap your tokens for other tokens needed to gain a pass to programs.",
   },
   {
     id: "feature-2",
     icon: shield,
     title: "100% Secured",
     content:
-      "We take proactive steps make sure your information and transactions are secure.",
+      "We take proactive steps to make sure your information and transactions are secure.",
   },
   {
     id: "feature-3",
     icon: send,
-    title: "Balance Transfer",
+    title: "Minimal Fees",
     content:
-      "A balance transfer crypto can save you a lot of money in interest charges.",
+      "We ensure that only the bare minimum rates are applied to transfers to save you a lot on fees and interest charges.",
   },
 ];
 
@@ -47,25 +47,25 @@ export const feedback = [
   {
     id: "feedback-1",
     content:
-      "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
-    name: "Herman Jensen",
-    title: "Founder & Leader",
+      "",
+    name: "When investing in DeFi a crucial point is understanding whether the smart contract which is in charge of handling your money is secure.",
+    title: "Smart Contract Engineer",
     img: people01,
   },
   {
     id: "feedback-2",
     content:
-      "Money makes your life easier. If you're lucky to have it, you're lucky.",
-    name: "Steve Mark",
-    title: "Founder & Leader",
+      "Get the user experience right, and you are several steps closer to solving your users' problems.",
+    name: "Mr. Omajuwa",
+    title: "Frontend Engineer",
     img: people02,
   },
   {
     id: "feedback-3",
     content:
-      "It is usually people in the money business, finance, and international trade that are really rich.",
-    name: "Kenn Gallagher",
-    title: "Founder & Leader",
+      "The new world of finance is P2P; Unlocking a plethora of use cases to create access for the present and future generations.",
+    name: "Adelaide Atakora",
+    title: "Project Manager",
     img: people03,
   },
 ];
@@ -83,7 +83,7 @@ export const stats = [
   },
   {
     id: "stats-3",
-    title: "Transaction",
+    title: "Transactions per second",
     value: "$230M+",
   },
 ];
@@ -94,23 +94,23 @@ export const footerLinks = [
     links: [
       {
         name: "Content",
-        link: "https://www.hoobank.com/content/",
+        link: "https:",
       },
       {
         name: "How it Works",
-        link: "https://www.hoobank.com/how-it-works/",
+        link: "https:",
       },
       // {
       //   name: "Create",
-      //   link: "https://www.hoobank.com/create/",
+      //   link: "https:",
       // },
       // {
       //   name: "Explore",
-      //   link: "https://www.hoobank.com/explore/",
+      //   link: "https:",
       // },
       // {
       //   name: "Terms & Services",
-      //   link: "https://www.hoobank.com/terms-and-services/",
+      //   link: "https:",
       // },
     ],
   },
@@ -119,23 +119,23 @@ export const footerLinks = [
     links: [
       {
         name: "Help Center",
-        link: "https://www.hoobank.com/help-center/",
+        link: "https:",
       },
       {
         name: "Partners",
-        link: "https://www.hoobank.com/partners/",
+        link: "https:",
       },
       // {
       //   name: "Suggestions",
-      //   link: "https://www.hoobank.com/suggestions/",
+      //   link: "https:",
       // },
       // {
       //   name: "Blog",
-      //   link: "https://www.hoobank.com/blog/",
+      //   link: "https:",
       // },
       // {
       //   name: "Newsletters",
-      //   link: "https://www.hoobank.com/newsletters/",
+      //   link: "https:",
       // },
     ],
   },
@@ -144,11 +144,11 @@ export const footerLinks = [
     links: [
       {
         name: "Our Partner",
-        link: "https://www.hoobank.com/our-partner/",
+        link: "https:",
       },
       {
         name: "Become a Partner",
-        link: "https://www.hoobank.com/become-a-partner/",
+        link: "https:",
       },
     ],
   },
